@@ -1056,6 +1056,7 @@ function showSection(id, tabEl){
     navTabs.scrollTo({left:tabLeft-navWidth/2+tabWidth/2,behavior:'smooth'});
   }
   if(location.hash!=='#'+id) location.hash=id;
+  document.querySelector('.nav-back').style.display=id==='overview'?'none':'flex';
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
