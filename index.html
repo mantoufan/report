@@ -1033,6 +1033,8 @@ function copyKeywords(fid){
 // ============================================================
 // NAVIGATION
 // ============================================================
+const VALID_IDS=['overview','f1','f2','f3','f4','f5','f6','f7','f8','f9','f10'];
+
 function showSection(id, tabEl){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
@@ -1043,7 +1045,7 @@ function showSection(id, tabEl){
     tabEl.classList.add('active');
   } else {
     const tabs=document.querySelectorAll('.nav-tab');
-    const idx=['overview','f1','f2','f3','f4','f5','f6','f7','f8','f9','f10'].indexOf(id);
+    const idx=VALID_IDS.indexOf(id);
     if(idx>=0&&tabs[idx]){tabs[idx].classList.add('active');activeTab=tabs[idx];}
   }
   if(activeTab){
@@ -1053,14 +1055,22 @@ function showSection(id, tabEl){
     const navWidth=navTabs.clientWidth;
     navTabs.scrollTo({left:tabLeft-navWidth/2+tabWidth/2,behavior:'smooth'});
   }
+  if(location.hash!=='#'+id) location.hash=id;
   window.scrollTo({top:0,behavior:'smooth'});
 }
+
+window.addEventListener('hashchange',()=>{
+  const id=location.hash.slice(1)||'overview';
+  if(VALID_IDS.includes(id)) showSection(id,null);
+});
 
 // ============================================================
 // INIT
 // ============================================================
 buildFeatureSections();
 buildOverview();
+const initId=location.hash.slice(1);
+if(initId&&VALID_IDS.includes(initId)) showSection(initId,null);
 </script>
 </body>
 </html>
