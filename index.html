@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI视频功能 SEO关键词调研报告 2025</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#F8F9FB;color:#1F2937;font-size:14px}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #E5E7EB;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 16px;display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-tab{flex-shrink:0;padding:12px 14px;font-size:13px;font-weight:500;color:#6B7280;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all .2s}
+.nav-tab:hover{color:#374151}
+.nav-tab.active{color:#EC4899;border-bottom-color:#EC4899}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#FFF0F6 0%,#EFF6FF 50%,#F0FDF4 100%);padding:48px 16px 32px;text-align:center}
+.hero h1{font-size:28px;font-weight:700;color:#111827;margin-bottom:8px}
+.hero p{color:#6B7280;font-size:15px;margin-bottom:24px}
+.hero-meta{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;gap:4px;background:#fff;border:1px solid #E5E7EB;border-radius:20px;padding:4px 12px;font-size:12px;color:#6B7280}
+
+/* CONTAINER */
+.container{max-width:1280px;margin:0 auto;padding:24px 16px}
+
+/* SECTION */
+.section{display:none}
+.section.active{display:block}
+
+/* CARDS ROW */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+.card{background:#fff;border-radius:12px;padding:20px;border:1px solid #F3F4F6;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.card-label{font-size:12px;color:#9CA3AF;font-weight:500;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.card-value{font-size:26px;font-weight:700;color:#111827}
+.card-sub{font-size:12px;color:#9CA3AF;margin-top:2px}
+
+/* GRID 2 */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+@media(max-width:768px){.grid2{grid-template-columns:1fr}}
+.panel{background:#fff;border-radius:12px;padding:20px;border:1px solid #F3F4F6;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.panel-title{font-size:14px;font-weight:600;color:#374151;margin-bottom:16px}
+
+/* TABLE */
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:8px 10px;color:#6B7280;font-weight:600;border-bottom:2px solid #F3F4F6;cursor:pointer;white-space:nowrap;user-select:none}
+th:hover{color:#374151}
+th .sort-icon{margin-left:4px;opacity:.4}
+th.sorted .sort-icon{opacity:1}
+td{padding:8px 10px;border-bottom:1px solid #F9FAFB;vertical-align:middle}
+tr:hover td{background:#FAFAFA}
+tr:last-child td{border-bottom:none}
+
+/* KD BAR */
+.kd-bar{display:flex;align-items:center;gap:6px}
+.kd-track{height:6px;width:60px;background:#F3F4F6;border-radius:3px;flex-shrink:0}
+.kd-fill{height:100%;border-radius:3px}
+.kd-num{font-size:12px;color:#6B7280;min-width:24px}
+
+/* VOLUME CHIP */
+.vol{font-weight:600;color:#111827}
+
+/* INTENT BADGE */
+.intent{font-size:11px;padding:2px 7px;border-radius:10px;font-weight:500}
+.intent-tool{background:#EFF6FF;color:#3B82F6}
+.intent-howto{background:#F0FDF4;color:#10B981}
+.intent-brand{background:#F5F3FF;color:#8B5CF6}
+.intent-commercial{background:#FFFBEB;color:#F59E0B}
+
+/* OPPORTUNITY SCORE */
+.opp{font-weight:600}
+.opp-high{color:#10B981}
+.opp-med{color:#F59E0B}
+.opp-low{color:#9CA3AF}
+
+/* GEM */
+.gems{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.gem{background:linear-gradient(135deg,#FFF0F6,#EFF6FF);border:1px solid #FBCFE8;border-radius:10px;padding:12px 16px;min-width:180px}
+.gem-kw{font-weight:700;font-size:13px;color:#111827;margin-bottom:4px}
+.gem-stats{display:flex;gap:8px;font-size:12px;color:#6B7280}
+.gem-stat span{font-weight:600;color:#374151}
+
+/* FEATURE HEADER */
+.feat-header{background:#fff;border-radius:12px;padding:20px;margin-bottom:20px;border:1px solid #F3F4F6;display:flex;align-items:flex-start;gap:16px}
+.feat-icon{font-size:36px;flex-shrink:0}
+.feat-title{font-size:20px;font-weight:700;color:#111827;margin-bottom:4px}
+.feat-desc{color:#6B7280;font-size:13px;margin-bottom:8px}
+.feat-meta{display:flex;gap:8px;flex-wrap:wrap}
+.feat-badge{font-size:11px;padding:3px 8px;border-radius:6px;font-weight:600}
+.stage-mature{background:#D1FAE5;color:#065F46}
+.stage-growing{background:#DBEAFE;color:#1E40AF}
+.stage-emerging{background:#FEF3C7;color:#92400E}
+.stage-new{background:#FCE7F3;color:#9D174D}
+.tech-badge{background:#F3F4F6;color:#6B7280;font-size:11px;padding:3px 8px;border-radius:6px}
+
+/* INSIGHT BOX */
+.insight{background:linear-gradient(135deg,#FFF7ED,#EFF6FF);border-left:3px solid #F97316;border-radius:0 8px 8px 0;padding:12px 16px;margin:16px 0;font-size:13px;color:#374151;line-height:1.6}
+.insight strong{color:#111827}
+
+/* CHART CANVAS */
+.chart-wrap{position:relative;height:280px}
+
+/* SEARCH */
+.search-bar{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.search-input{flex:1;min-width:200px;padding:7px 12px;border:1px solid #E5E7EB;border-radius:8px;font-size:13px;outline:none;background:#fff}
+.search-input:focus{border-color:#FBCFE8}
+.filter-select{padding:7px 10px;border:1px solid #E5E7EB;border-radius:8px;font-size:13px;outline:none;background:#fff;cursor:pointer}
+.btn{padding:7px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+.btn-copy{background:#F3F4F6;color:#374151}
+.btn-copy:hover{background:#E5E7EB}
+.btn-pink{background:#EC4899;color:#fff}
+.btn-pink:hover{background:#DB2777}
+
+/* OVERVIEW FEATURE CARDS */
+.feat-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-bottom:24px}
+.feat-card{background:#fff;border-radius:10px;padding:14px 16px;border:1px solid #F3F4F6;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:12px}
+.feat-card:hover{border-color:#FBCFE8;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.feat-card-icon{font-size:24px;flex-shrink:0}
+.feat-card-info{}
+.feat-card-name{font-weight:700;font-size:13px;color:#111827}
+.feat-card-en{font-size:11px;color:#9CA3AF}
+.feat-card-vol{font-size:16px;font-weight:700;margin-top:2px}
+.feat-card-kd{font-size:11px;color:#9CA3AF;margin-top:1px}
+
+/* TOP GEMS TABLE highlight */
+.top-gem-row td:first-child{font-weight:600}
+
+/* FOOTER */
+footer{text-align:center;padding:24px 16px;color:#9CA3AF;font-size:12px;border-top:1px solid #F3F4F6;background:#fff;margin-top:32px}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .hero h1{font-size:22px}
+  .cards{grid-template-columns:1fr 1fr}
+  .feat-header{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-tab active" onclick="showSection('overview',this)">📊 总览</div>
+    <div class="nav-tab" onclick="showSection('f1',this)">🎭 换脸</div>
+    <div class="nav-tab" onclick="showSection('f2',this)">🕺 动作复刻</div>
+    <div class="nav-tab" onclick="showSection('f3',this)">🔗 视频衔接</div>
+    <div class="nav-tab" onclick="showSection('f4',this)">✂️ 内容编辑</div>
+    <div class="nav-tab" onclick="showSection('f5',this)">🖼️ 视频扩写</div>
+    <div class="nav-tab" onclick="showSection('f6',this)">⏩ 视频延长</div>
+    <div class="nav-tab" onclick="showSection('f7',this)">🎨 风格转换</div>
+    <div class="nav-tab" onclick="showSection('f8',this)">🌈 颜色校正</div>
+    <div class="nav-tab" onclick="showSection('f9',this)">🚫 去水印</div>
+    <div class="nav-tab" onclick="showSection('f10',this)">✍️ 提示词</div>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>AI视频功能 SEO关键词调研报告</h1>
+  <p>10大功能 · 覆盖主流英文搜索市场 · 数据来源 Semrush</p>
+  <div class="hero-meta">
+    <span class="badge">📅 2025年</span>
+    <span class="badge">🔍 数据库 US</span>
+    <span class="badge">📊 Semrush Standard API</span>
+    <span class="badge">🔑 关键词覆盖 400+</span>
+  </div>
+</div>
+
+<!-- ===== OVERVIEW ===== -->
+<div id="section-overview" class="section active">
+<div class="container">
+
+  <div class="cards" id="overview-stats"></div>
+
+  <div class="feat-cards" id="feat-cards-grid"></div>
+
+  <div class="grid2">
+    <div class="panel">
+      <div class="panel-title">各功能关键词总搜索量对比</div>
+      <div class="chart-wrap"><canvas id="chart-overview-vol"></canvas></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">竞争难度分布 (平均KD vs 总量)</div>
+      <div class="chart-wrap"><canvas id="chart-overview-bubble"></canvas></div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-bottom:24px">
+    <div class="panel-title">🏆 全局机会词 TOP 20（高量 低难度）</div>
+    <div class="tbl-wrap">
+      <table id="table-global-gems">
+        <thead><tr>
+          <th onclick="sortTable('table-global-gems',0)">关键词 <span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('table-global-gems',1)">所属功能</th>
+          <th onclick="sortTable('table-global-gems',2)">月搜索量 <span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('table-global-gems',3)">KD <span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('table-global-gems',4)">CPC <span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('table-global-gems',5)">机会分 <span class="sort-icon">↕</span></th>
+        </tr></thead>
+        <tbody id="global-gems-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ===== FEATURE SECTIONS (1-10) will be injected by JS ===== -->
+<div id="feature-sections"></div>
+
+<footer>
+  数据来源：Semrush API (US市场, 2025) · 仅供参考 ·
+  <strong>机会分</strong> = 月搜索量 × (100-KD) / 1000
+</footer>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+const FEATURES = [
+{
+  id:'f1', nav:'换脸', emoji:'🎭', color:'#EC4899', bg:'#FDF2F8', border:'#FBCFE8',
+  name:'视频换脸', nameEn:'Video Face Swap',
+  desc:'将视频中的人脸替换为目标人脸，是最成熟的AI视频编辑功能之一。',
+  tech:'InsightFace · DeepFaceLab · Vidwud · Reface',
+  stage:'mature', stageLabel:'成熟市场',
+  insight:'搜索量极大，竞争也高。重点攻"video face swap"（KD64）和"faceswapper"（KD23）等变体，以及"free"系关键词获取流量。GIF换脸（KD23）是被忽视的低竞争入口。',
+  kws:[
+    ['face swap',135000,85,1.11,'tool'],
+    ['ai face swap',90500,75,0.92,'tool'],
+    ['face swap ai',60500,72,0.95,'tool'],
+    ['faceswap',49500,88,1.11,'brand'],
+    ['face swap faces',27100,80,1.11,'tool'],
+    ['swap face',22200,73,1.11,'tool'],
+    ['vidwud',14800,44,1.23,'brand'],
+    ['face swap free',14800,78,0.81,'commercial'],
+    ['video face swap',12100,64,0.47,'tool'],
+    ['ai faceswap',9900,81,0.92,'tool'],
+    ['ai face swap video',8100,65,1.53,'tool'],
+    ['reface',5400,59,0.85,'brand'],
+    ['gif face swap',5400,23,1.19,'tool'],
+    ['ai video face swap',6600,39,0.70,'tool'],
+    ['face swap app',6600,47,1.24,'commercial'],
+    ['faceswapper',6600,23,1.02,'brand'],
+    ['free face swap',12100,69,0.81,'commercial'],
+    ['ai face swapper',5400,59,0.92,'tool'],
+    ['aifaceswap.io',4400,33,0.98,'brand'],
+    ['free video face swap',4400,28,0.34,'commercial'],
+    ['face swap ai free',4400,60,0.86,'commercial'],
+    ['ai face swap free',6600,72,0.81,'commercial'],
+    ['canva face swap',3600,31,0.00,'brand'],
+    ['deep swap',3600,52,1.35,'brand'],
+    ['ai video faceswap',3600,51,0.70,'tool'],
+    ['face video swap',3600,66,0.78,'tool'],
+    ['swapface',6600,67,1.11,'brand'],
+    ['faceswapper ai',5400,73,1.07,'brand'],
+    ['alfaceswap',6600,55,1.17,'brand'],
+  ]
+},
+{
+  id:'f2', nav:'动作复刻', emoji:'🕺', color:'#8B5CF6', bg:'#F5F3FF', border:'#DDD6FE',
+  name:'视频动作复刻', nameEn:'Motion Replication / Animate Anyone',
+  desc:'以输入视频的动作/表情为驱动，让一张静态图片「活」起来，复刻同等动作。',
+  tech:'Wan Animate · Kling AI · Animate Anyone · LivePortrait',
+  stage:'growing', stageLabel:'成长市场',
+  insight:'"Animate Anyone"搜索量仅260，但"image to video ai"已达27K。用户用更宽泛的词搜索此类需求。重点布局"still animation app"（KD45）、"photo to video ai"（KD50）等中竞争词，以及"movepic"（KD27）这类工具品牌词旁路流量。',
+  kws:[
+    ['image to video ai',27100,66,0.63,'tool'],
+    ['ai image to video',12100,52,0.60,'tool'],
+    ['artificial intelligence image to video',9900,56,0.60,'tool'],
+    ['image to video ai free',6600,43,0.57,'commercial'],
+    ['ai animation',5400,58,1.17,'tool'],
+    ['ai motion',5400,52,2.24,'tool'],
+    ['ai animation generator',4400,78,1.46,'tool'],
+    ['ai image to video generator free',4400,41,0.61,'commercial'],
+    ['free image to video ai',4400,38,0.62,'commercial'],
+    ['smiler gif',5400,23,0.00,'brand'],
+    ['still animation app',2900,45,1.21,'tool'],
+    ['photo to video ai',3600,50,0.80,'tool'],
+    ['ai photo to video',2900,50,0.72,'tool'],
+    ['picture to video ai',2900,49,0.79,'tool'],
+    ['animated face',2400,22,0.00,'informational'],
+    ['how to animate a picture',1900,52,1.21,'howto'],
+    ['animate photos',1900,57,1.12,'tool'],
+    ['movepic',1900,27,1.55,'brand'],
+    ['alivemoment',1900,32,1.05,'brand'],
+    ['ai picture to video',2400,55,0.73,'tool'],
+    ['animate anyone',260,64,1.33,'brand'],
+    ['image to video free',2900,45,0.48,'commercial'],
+    ['how to make a video with live photos',2400,35,1.07,'howto'],
+    ['ai face',2400,60,0.93,'tool'],
+    ['animated pictures',2400,55,1.04,'informational'],
+    ['free ai image to video generator',2400,40,0.65,'commercial'],
+  ]
+},
+{
+  id:'f3', nav:'视频衔接', emoji:'🔗', color:'#06B6D4', bg:'#ECFEFF', border:'#A5F3FC',
+  name:'视频自然衔接', nameEn:'Seamless Video Stitching',
+  desc:'将两段视频的首尾自然拼接，消除跳切感。首末帧视频生成后的必要后处理步骤。',
+  tech:'Wan VACE',
+  stage:'new', stageLabel:'新兴市场',
+  insight:'AI无缝衔接是全新需求，目前几乎零专属搜索词。现有流量集中在"video merge"等基础合并需求（无AI）。<strong>蓝海机会：</strong>现在布局"seamless video merge ai"等词可以零竞争建立权威，等市场教育完成后收割。短期可用"merge videos"系词引流。',
+  kws:[
+    ['video combiner',2900,72,1.06,'tool'],
+    ['merge videos',2400,67,1.21,'tool'],
+    ['combine videos',2400,66,1.06,'tool'],
+    ['video merger',2400,56,0.93,'tool'],
+    ['merge videos online',2400,58,0.82,'tool'],
+    ['clip joint',2900,28,0.64,'tool'],
+    ['append videos online',1300,59,0.79,'tool'],
+    ['video merger online',1300,49,0.56,'tool'],
+    ['how to merge videos',1300,45,1.08,'howto'],
+    ['merge clips online',1300,48,0.79,'tool'],
+    ['how to combine videos',1300,33,1.15,'howto'],
+    ['how to combine two videos',1000,46,1.08,'howto'],
+    ['combine two videos',1000,58,1.02,'tool'],
+    ['how to merge two videos',1000,45,1.24,'howto'],
+    ['combine videos online',1000,49,0.79,'tool'],
+    ['combine mp4 files',1300,45,1.42,'tool'],
+    ['how to combine 2 videos on iphone',1000,42,0.99,'howto'],
+    ['merge 2 videos',1000,58,1.03,'tool'],
+    ['combine 2 videos',1000,66,1.03,'tool'],
+    ['how can i merge two videos',1000,44,1.08,'howto'],
+  ]
+},
+{
+  id:'f4', nav:'内容编辑', emoji:'✂️', color:'#F59E0B', bg:'#FFFBEB', border:'#FDE68A',
+  name:'视频内容编辑 (Inpainting)', nameEn:'Video Inpainting / Object Removal',
+  desc:'文字描述驱动的视频内容修改：换衣服、去除元素、添加元素。等同于图片 inpaint/masked erase。',
+  tech:'LTX-Video 2.3 · Runway Gen-3 · Pika Labs',
+  stage:'growing', stageLabel:'成长市场',
+  insight:'"Magic eraser"（40.5K，KD64）是量最大的入口，但竞争较高。中等机会词："canva magic eraser"（KD31）、"cleanup.picture"（KD62）。<strong>视频专属词搜索量极低</strong>，需同时覆盖图片inpainting词来引流，然后在页面内转化。',
+  kws:[
+    ['magic eraser',40500,64,0.43,'tool'],
+    ['remove object from image',9900,71,1.00,'tool'],
+    ['ai remover',8100,71,0.64,'tool'],
+    ['delete objects from pictures',8100,70,1.00,'tool'],
+    ['remove object from photo',8100,71,1.00,'tool'],
+    ['remove people from photos',6600,52,1.26,'tool'],
+    ['remove person from photo',6600,61,1.26,'tool'],
+    ['object remover',4400,71,1.02,'tool'],
+    ['picture people',4400,44,1.72,'informational'],
+    ['cleanup pictures',3600,69,0.81,'tool'],
+    ['erase object photo',3600,70,1.00,'tool'],
+    ['how to remove a person from a photo',3600,32,1.56,'howto'],
+    ['canva magic eraser',2400,31,1.25,'brand'],
+    ['cleanup.picture',2900,62,0.93,'brand'],
+    ['app.runwayml',2400,54,1.40,'brand'],
+    ['image remover',2900,87,1.50,'tool'],
+    ['erase object from photo',2900,76,1.00,'tool'],
+    ['how to remove someone from a picture',2400,41,1.45,'howto'],
+    ['remove object from picture',2400,70,1.00,'tool'],
+    ['remove objects from photos',2400,75,1.00,'tool'],
+    ['object remover from photo',2400,79,1.00,'tool'],
+    ['eraser wheel',3600,20,0.40,'tool'],
+    ['magic eraser.com',2900,58,0.43,'brand'],
+    ['how to remove people from photos',2400,37,1.56,'howto'],
+    ['delete object from photo',2400,69,1.00,'tool'],
+  ]
+},
+{
+  id:'f5', nav:'视频扩写', emoji:'🖼️', color:'#10B981', bg:'#ECFDF5', border:'#A7F3D0',
+  name:'视频扩写 (Outpainting)', nameEn:'Video Outpainting',
+  desc:'将视频画面向外扩展，生成超出原始画面范围的内容。等同于图片 outpainting。',
+  tech:'DALL-E 3 Outpaint · Stable Diffusion · ComfyUI',
+  stage:'new', stageLabel:'新兴市场',
+  insight:'目前搜索量集中在图片扩展词（5K级别），视频扩写几乎无专属搜索量。"outpaint"（KD19，CPC $10.35）CPC极高说明商业价值大。<strong>重点机会：</strong>"generative expand"（KD59）和"generative fill ai"等词正在增长，是AI原生搜索词。',
+  kws:[
+    ['ai expand image',5400,58,0.51,'tool'],
+    ['ai image expander',5400,58,0.50,'tool'],
+    ['image extender',4400,60,0.56,'tool'],
+    ['ai photo extender',3600,63,0.50,'tool'],
+    ['ai expand',2400,49,0.53,'tool'],
+    ['expand image ai',2400,57,0.59,'tool'],
+    ['outpaint',720,19,10.35,'tool'],
+    ['ai image extender free',1900,54,0.48,'commercial'],
+    ['photo expander',1600,62,0.52,'tool'],
+    ['enlarge picture',1600,71,1.03,'tool'],
+    ['ai photo expander',1300,54,0.48,'tool'],
+    ['extend image ai',1300,53,0.58,'tool'],
+    ['image expansion',1300,55,0.70,'tool'],
+    ['ai expand image free',1000,53,0.35,'commercial'],
+    ['expand photo',1000,39,0.49,'tool'],
+    ['image extender ai',1000,52,0.55,'tool'],
+    ['expand photo ai',880,53,0.52,'tool'],
+    ['image expander ai',880,54,0.56,'tool'],
+    ['generative expand',590,59,0.86,'tool'],
+    ['generative fill ai',590,65,1.13,'tool'],
+    ['image expand',720,0,0.52,'tool'],
+    ['ai expanding image',590,53,0.52,'tool'],
+    ['ai extender',590,55,0.58,'tool'],
+    ['background extender',590,60,0.57,'tool'],
+    ['grow image',590,66,1.92,'tool'],
+    ['completely free ai image extender',880,53,0.00,'commercial'],
+    ['widener canvas',880,18,0.00,'tool'],
+    ['expand a photo',590,68,0.49,'tool'],
+  ]
+},
+{
+  id:'f6', nav:'视频延长', emoji:'⏩', color:'#0EA5E9', bg:'#EFF6FF', border:'#BFDBFE',
+  name:'视频延长 / 片段重做', nameEn:'Video Extension / Regeneration',
+  desc:'AI延续视频时间线：向后延伸视频，或对特定时间段进行重新生成替换。',
+  tech:'Kling AI · Runway · Wan · Pika Labs',
+  stage:'growing', stageLabel:'成长市场',
+  insight:'<strong>最大蓝海：</strong>所有关键词KD均极低（9-34）！"ai video extender"（1K搜索，KD13）、"ai extend video length free"（880，KD9）竞争极小。现在入场成本最低，增长确定性最高。"video longer"（KD34）有$6.74超高CPC，证明商业价值。',
+  kws:[
+    ['ai video extender',1000,13,0.87,'tool'],
+    ['ai extend video length free',880,9,0.00,'commercial'],
+    ['video extender',480,19,1.34,'tool'],
+    ['expand video ai',320,47,1.70,'tool'],
+    ['ai expand video',260,20,1.05,'tool'],
+    ['ai video extender free',260,13,0.68,'commercial'],
+    ['how to make a video longer',260,33,1.22,'howto'],
+    ['ai video expander',210,18,1.34,'tool'],
+    ['video extender ai',210,10,0.88,'tool'],
+    ['video longer',210,34,6.74,'commercial'],
+    ['make video longer',210,25,1.18,'tool'],
+    ['ai extend video',210,10,0.94,'tool'],
+    ['extend video',140,13,1.51,'tool'],
+    ['ai video expand',90,50,1.59,'tool'],
+    ['ai expand video free',90,48,0.86,'commercial'],
+    ['clip extender',90,9,0.31,'tool'],
+    ['free ai video extender',110,12,0.62,'commercial'],
+    ['kling ai prompts',110,7,1.10,'tool'],
+    ['make a video longer',110,23,1.18,'howto'],
+    ['extend clip',110,24,0.48,'tool'],
+    ['extended video',110,15,1.51,'tool'],
+    ['how to make a longer',140,17,0.00,'howto'],
+    ['continue video',140,34,0.00,'tool'],
+    ['video expander',110,34,1.07,'tool'],
+    ['ai perchance video',170,18,0.00,'tool'],
+    ['background extender',590,60,0.57,'tool'],
+  ]
+},
+{
+  id:'f7', nav:'风格转换', emoji:'🎨', color:'#F97316', bg:'#FFF7ED', border:'#FED7AA',
+  name:'视频风格转换', nameEn:'Video Style Transfer',
+  desc:'将视频转换为特定艺术风格：吉卜力、动漫、陶土、黑白上色等。',
+  tech:'DomoAI · Stable Video Diffusion · ControlNet',
+  stage:'growing', stageLabel:'成长市场',
+  insight:'"DomoAI"（12.1K，KD50）和"domo ai"（9.9K，KD43）是视频风格转换赛道的核心词，低竞争高价值。Ghibli系词因ChatGPT推动爆量（12K），KD中等。"anime filter"（KD51）是高转化词，用户明确需要过滤器工具。',
+  kws:[
+    ['chatgpt studio ghibli',12100,74,1.86,'brand'],
+    ['ghibli ai',12100,58,0.77,'tool'],
+    ['studio ghibli ai',9900,60,0.90,'tool'],
+    ['domoai',12100,50,4.66,'brand'],
+    ['ghibli style',8100,74,0.83,'tool'],
+    ['domo ai',9900,43,1.60,'tool'],
+    ['chat gpt studio ghibli',8100,68,0.00,'brand'],
+    ['ghibli art',6600,60,0.61,'tool'],
+    ['ai cartoon generator',5400,54,1.25,'tool'],
+    ['ai animation',5400,58,1.17,'tool'],
+    ['domo artificial intelligence',5400,28,1.60,'brand'],
+    ['studio ghibli style',5400,48,0.83,'tool'],
+    ['studio ghibli art',5400,39,0.55,'tool'],
+    ['artwork ghibli',5400,15,0.55,'tool'],
+    ['anime ai generator',3600,46,0.91,'tool'],
+    ['ai anime',3600,75,0.97,'tool'],
+    ['cartoonify',2900,43,0.66,'tool'],
+    ['domo cartoon',2900,50,0.36,'tool'],
+    ['ghibli ai image generator',3600,60,0.67,'tool'],
+    ['anime filter',2400,51,0.50,'tool'],
+    ['ai cartoon',2400,55,1.08,'tool'],
+    ['studio ghibli art style',3600,43,0.66,'tool'],
+    ['ghibli chatgpt',2900,76,0.86,'brand'],
+    ['ai animation generator',4400,78,1.46,'tool'],
+    ['3d character animation toolkit',3600,28,0.42,'tool'],
+  ]
+},
+{
+  id:'f8', nav:'颜色校正', emoji:'🌈', color:'#7C3AED', bg:'#F5F3FF', border:'#DDD6FE',
+  name:'视频颜色校正', nameEn:'Video Color Correction',
+  desc:'AI辅助的视频色彩调整、自动调色、色彩分级，提升视频视觉质量。',
+  tech:'DaVinci Resolve · Adobe Premiere · AutoColor AI',
+  stage:'mature', stageLabel:'成熟市场',
+  insight:'颜色校正是成熟领域，被DaVinci Resolve主导。独立机会在"color grading software"（KD14）和"color correction software"（KD32）等工具词。AI色彩增强是新入口："ai boost image colors"（KD59）和"auto color"（KD51）值得关注。',
+  kws:[
+    ['color grading',6600,45,1.77,'tool'],
+    ['how to color grade in davinci resolve',5400,37,0.00,'howto'],
+    ['color correction',4400,44,0.63,'tool'],
+    ['color grade',4400,45,0.00,'tool'],
+    ['how to color grade',3600,44,0.00,'howto'],
+    ['davinci resolve color grading',1300,39,1.74,'brand'],
+    ['what is color grading',1300,40,0.31,'howto'],
+    ['graded colour',1300,43,1.77,'informational'],
+    ['cinema grade',2400,26,0.00,'brand'],
+    ['auto color',1000,51,1.44,'tool'],
+    ['color grading software',880,14,2.67,'commercial'],
+    ['video grading',880,30,1.77,'tool'],
+    ['da vinci colour grading',880,34,1.43,'brand'],
+    ['color cast',1000,35,0.00,'informational'],
+    ['color fix',1000,29,0.39,'tool'],
+    ['color correct',720,33,0.78,'tool'],
+    ['colour grading',590,43,1.77,'tool'],
+    ['auto coloring',720,37,1.44,'tool'],
+    ['color balance',720,27,0.00,'tool'],
+    ['color correction software',480,32,2.34,'commercial'],
+    ['color fixer',720,14,0.44,'tool'],
+    ['lift gamma gain in davinci',590,12,0.00,'howto'],
+    ['what is color correction',590,18,0.24,'howto'],
+    ['ai boost image colors',880,59,0.00,'tool'],
+    ['autocolor',590,36,1.44,'tool'],
+  ]
+},
+{
+  id:'f9', nav:'去水印', emoji:'🚫', color:'#14B8A6', bg:'#F0FDFA', border:'#99F6E4',
+  name:'去水印', nameEn:'Watermark Removal',
+  desc:'去除视频/图片中的水印：AI生成内容水印、TikTok水印、工具/品牌水印等。',
+  tech:'DeWatermark · Media.io · Runway',
+  stage:'mature', stageLabel:'成熟市场',
+  insight:'<strong>最高总量赛道！</strong>"watermark remover"（110K，KD66）。TikTok水印词（27K）是独立的大机会。<strong>极品蓝海词：</strong>"sora watermark remover"（8.1K，KD23）、"removesorawatermark"（4.4K，KD22）、"remover logo sora 2"（4.4K，KD16）——AI内容平台水印是完全未开发的空白！',
+  kws:[
+    ['watermark remover',110000,66,0.78,'tool'],
+    ['remove watermark',33100,59,0.82,'tool'],
+    ['tiktok watermark remover',27100,60,1.30,'tool'],
+    ['remove watermark from photo',14800,57,1.04,'tool'],
+    ['delete watermark photo',12100,74,1.04,'tool'],
+    ['remove proof from picture',12100,52,0.82,'tool'],
+    ['remove watermark from video',12100,57,0.46,'tool'],
+    ['watermark remover free',12100,64,0.78,'commercial'],
+    ['ai watermark remover',9900,64,0.81,'tool'],
+    ['free watermark remover',9900,60,0.78,'commercial'],
+    ['watermark eraser',9900,70,0.78,'tool'],
+    ['sora watermark remover',8100,23,0.25,'tool'],
+    ['watermark remover video',8100,57,0.46,'tool'],
+    ['dewatermark',6600,27,0.74,'brand'],
+    ['how to remove watermark from photo',6600,51,1.36,'howto'],
+    ['video watermark remover',6600,61,0.36,'tool'],
+    ['delete watermark from video',5400,60,0.46,'tool'],
+    ['remove tiktok watermark',5400,48,1.23,'tool'],
+    ['watermark eraser',5400,71,0.78,'tool'],
+    ['remove video watermark',4400,61,0.46,'tool'],
+    ['remove video watermark free',4400,63,0.48,'commercial'],
+    ['remover logo sora 2',4400,16,0.00,'tool'],
+    ['removesorawatermark',4400,22,0.30,'brand'],
+    ['trademark remover',4400,66,0.78,'tool'],
+    ['watermark remover video free',4400,73,0.48,'commercial'],
+    ['media.io watermark remover',3600,55,0.60,'brand'],
+    ['remove watermark from image',3600,50,0.91,'tool'],
+    ['remove text from video',2900,34,0.52,'tool'],
+    ['erase watermark video',2900,64,0.46,'tool'],
+    ['free remove watermark from video',2900,63,0.48,'commercial'],
+  ]
+},
+{
+  id:'f10', nav:'提示词', emoji:'✍️', color:'#F43F5E', bg:'#FFF1F2', border:'#FECDD3',
+  name:'提示词编写 / 优化 / 分享', nameEn:'AI Prompt Writing & Optimization',
+  desc:'AI视频/图像生成的提示词撰写、优化技巧、提示词模板库和社区分享平台。',
+  tech:'PromptBase · PromptHero · OpenAI · Midjourney',
+  stage:'growing', stageLabel:'成长市场',
+  insight:'"chatgpt prompts"（6.6K，KD48）和"ai prompts"（6.6K，KD78）是主战场。中等竞争机会："prompt library"（KD44）、"prompt hero"（KD26）。<strong>特殊机会：</strong>"kling ai prompts"（KD7，CPC$1.10）——Kling专用提示词几乎无竞争，精准触达高价值用户群。',
+  kws:[
+    ['prompts',9900,51,4.26,'informational'],
+    ['ai prompts',6600,78,1.60,'tool'],
+    ['chatgpt prompts',6600,48,1.05,'tool'],
+    ['chatgpt prompt',2900,64,1.05,'tool'],
+    ['chatgpt prompt generator',2400,54,1.82,'tool'],
+    ['promptbase',2400,51,3.08,'brand'],
+    ['prompt library',1300,44,2.37,'tool'],
+    ['idealprompt',880,30,1.62,'brand'],
+    ['prompt hero',880,26,10.20,'brand'],
+    ['ai art prompts',590,43,1.28,'tool'],
+    ['generate prompt ai',590,60,1.66,'tool'],
+    ['prompt examples',720,55,0.51,'informational'],
+    ['flux ai image to prompt',1000,39,1.44,'tool'],
+    ['openai prompt enhancer',1000,39,4.74,'tool'],
+    ['awesome-chatgpt-prompts',720,47,2.67,'informational'],
+    ['best prompts for chatgpt',1000,43,1.51,'tool'],
+    ['best chatgpt image prompts',590,34,1.52,'tool'],
+    ['prompt for chatgpt',1000,45,1.54,'tool'],
+    ['kling ai prompts',110,7,1.10,'tool'],
+    ['r/prompt engineering',880,78,4.19,'informational'],
+    ['promt ai',720,66,1.82,'tool'],
+    ['ai提示词',2400,28,2.65,'tool'],
+  ]
+}
+];
+
+// ============================================================
+// UTILITIES
+// ============================================================
+function fmtVol(n){
+  if(n>=10000) return (n/1000).toFixed(0)+'K';
+  if(n>=1000) return (n/1000).toFixed(1)+'K';
+  return n.toString();
+}
+function oppScore(vol,kd){return Math.round(vol*(100-kd)/1000);}
+function kdColor(kd){
+  if(kd<30) return '#10B981';
+  if(kd<50) return '#F59E0B';
+  if(kd<70) return '#F97316';
+  return '#EF4444';
+}
+function oppClass(score){
+  if(score>=1000) return 'opp-high';
+  if(score>=200) return 'opp-med';
+  return 'opp-low';
+}
+function intentBadge(t){
+  const map={tool:'tool 工具',howto:'how-to 教程',brand:'品牌词',commercial:'商业词',informational:'信息词'};
+  const cls={tool:'intent-tool',howto:'intent-howto',brand:'intent-brand',commercial:'intent-commercial',informational:'intent-brand'};
+  return `<span class="intent ${cls[t]||'intent-tool'}">${map[t]||t}</span>`;
+}
+
+// ============================================================
+// BUILD OVERVIEW
+// ============================================================
+function buildOverview(){
+  // Summary stats
+  let totalKws=0, totalVol=0, kdSum=0, kdCount=0;
+  const allGems=[];
+  FEATURES.forEach(f=>{
+    f.kws.forEach(k=>{
+      totalKws++;
+      totalVol+=k[1];
+      kdSum+=k[2]; kdCount++;
+      const s=oppScore(k[1],k[2]);
+      if(k[2]<=40 && k[1]>=500){
+        allGems.push({kw:k[0],vol:k[1],kd:k[2],cpc:k[3],feat:f.name,featEmoji:f.emoji,score:s});
+      }
+    });
+  });
+  const avgKD=Math.round(kdSum/kdCount);
+  allGems.sort((a,b)=>b.score-a.score);
+
+  document.getElementById('overview-stats').innerHTML=`
+    <div class="card"><div class="card-label">总关键词数</div><div class="card-value">${totalKws}</div><div class="card-sub">10大功能合计</div></div>
+    <div class="card"><div class="card-label">总月搜索量</div><div class="card-value">${fmtVol(totalVol)}</div><div class="card-sub">US市场</div></div>
+    <div class="card"><div class="card-label">平均KD难度</div><div class="card-value">${avgKD}</div><div class="card-sub">0=易, 100=难</div></div>
+    <div class="card"><div class="card-label">机会词数量</div><div class="card-value">${allGems.length}</div><div class="card-sub">KD≤40, 量≥500</div></div>
+  `;
+
+  // Feature cards
+  const fc=document.getElementById('feat-cards-grid');
+  fc.innerHTML=FEATURES.map(f=>{
+    const vol=f.kws.reduce((s,k)=>s+k[1],0);
+    const avgKd=Math.round(f.kws.reduce((s,k)=>s+k[2],0)/f.kws.length);
+    return `<div class="feat-card" onclick="showSection('${f.id}',null)" style="border-left:3px solid ${f.color}">
+      <div class="feat-card-icon">${f.emoji}</div>
+      <div class="feat-card-info">
+        <div class="feat-card-name">${f.name}</div>
+        <div class="feat-card-en">${f.nameEn}</div>
+        <div class="feat-card-vol" style="color:${f.color}">${fmtVol(vol)}</div>
+        <div class="feat-card-kd">月搜索量 · 平均KD ${avgKd}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Global gems table
+  const tbody=document.getElementById('global-gems-body');
+  tbody.innerHTML=allGems.slice(0,20).map(g=>`<tr>
+    <td style="font-weight:600">${g.kw}</td>
+    <td><span style="color:#6B7280">${g.featEmoji} ${g.feat}</span></td>
+    <td class="vol">${fmtVol(g.vol)}</td>
+    <td><div class="kd-bar"><div class="kd-track"><div class="kd-fill" style="width:${g.kd}%;background:${kdColor(g.kd)}"></div></div><span class="kd-num">${g.kd}</span></div></td>
+    <td>$${g.cpc.toFixed(2)}</td>
+    <td class="opp ${oppClass(g.score)}">${g.score.toLocaleString()}</td>
+  </tr>`).join('');
+
+  // Bar chart - volume
+  const labels=FEATURES.map(f=>f.emoji+' '+f.nav);
+  const vols=FEATURES.map(f=>f.kws.reduce((s,k)=>s+k[1],0));
+  const colors=FEATURES.map(f=>f.color);
+  new Chart(document.getElementById('chart-overview-vol'),{
+    type:'bar',
+    data:{labels,datasets:[{data:vols,backgroundColor:colors.map(c=>c+'CC'),borderColor:colors,borderWidth:1.5,borderRadius:6}]},
+    options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>fmtVol(v)}}},responsive:true,maintainAspectRatio:false}
+  });
+
+  // Bubble chart - avg kd vs total vol
+  const bubbleData=FEATURES.map(f=>{
+    const vol=f.kws.reduce((s,k)=>s+k[1],0);
+    const kd=Math.round(f.kws.reduce((s,k)=>s+k[2],0)/f.kws.length);
+    return {x:kd,y:vol,r:Math.max(8,Math.min(30,vol/8000))};
+  });
+  new Chart(document.getElementById('chart-overview-bubble'),{
+    type:'bubble',
+    data:{datasets:FEATURES.map((f,i)=>({label:f.emoji+f.nav,data:[bubbleData[i]],backgroundColor:f.color+'99',borderColor:f.color,borderWidth:2}))},
+    options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:(ctx)=>{const f=FEATURES[ctx.datasetIndex];return `${f.emoji}${f.nav}: 量${fmtVol(bubbleData[ctx.datasetIndex].y)}, KD${bubbleData[ctx.datasetIndex].x}`;
+}}}},scales:{x:{title:{display:true,text:'平均KD'},min:0,max:100},y:{title:{display:true,text:'总搜索量'},ticks:{callback:v=>fmtVol(v)}}},responsive:true,maintainAspectRatio:false}
+  });
+}
+
+// ============================================================
+// BUILD FEATURE SECTIONS
+// ============================================================
+function buildFeatureSections(){
+  const container=document.getElementById('feature-sections');
+  FEATURES.forEach(f=>{
+    const totalVol=f.kws.reduce((s,k)=>s+k[1],0);
+    const avgKd=Math.round(f.kws.reduce((s,k)=>s+k[2],0)/f.kws.length);
+    const avgCpc=(f.kws.reduce((s,k)=>s+k[3],0)/f.kws.length).toFixed(2);
+    const gems=f.kws.filter(k=>k[2]<=40&&k[1]>=300).sort((a,b)=>oppScore(b[1],b[2])-oppScore(a[1],a[2])).slice(0,3);
+    const stageClass={mature:'stage-mature',growing:'stage-growing',emerging:'stage-emerging',new:'stage-new'};
+
+    const html=`
+<div id="section-${f.id}" class="section">
+<div class="container">
+  <div class="feat-header">
+    <div class="feat-icon">${f.emoji}</div>
+    <div style="flex:1">
+      <div class="feat-title">${f.name}</div>
+      <div class="feat-desc">${f.desc}</div>
+      <div class="feat-meta">
+        <span class="feat-badge ${stageClass[f.stage]}">${f.stageLabel}</span>
+        <span class="tech-badge">🔧 ${f.tech}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card"><div class="card-label">关键词数</div><div class="card-value">${f.kws.length}</div></div>
+    <div class="card"><div class="card-label">总月搜索量</div><div class="card-value" style="color:${f.color}">${fmtVol(totalVol)}</div></div>
+    <div class="card"><div class="card-label">平均KD</div><div class="card-value">${avgKd}</div><div class="card-sub">难度0-100</div></div>
+    <div class="card"><div class="card-label">平均CPC</div><div class="card-value">$${avgCpc}</div></div>
+  </div>
+
+  ${gems.length?`<div style="margin-bottom:16px">
+    <div class="panel-title" style="margin-bottom:10px">💎 机会词（低竞争+可观流量）</div>
+    <div class="gems">${gems.map(k=>`<div class="gem" style="border-color:${f.border}">
+      <div class="gem-kw">${k[0]}</div>
+      <div class="gem-stats">量<span>${fmtVol(k[1])}</span> KD<span style="color:${kdColor(k[2])}">${k[2]}</span> 分<span style="color:#10B981">${oppScore(k[1],k[2])}</span></div>
+    </div>`).join('')}</div>
+  </div>`:''}
+
+  <div class="insight">💡 <strong>市场洞察：</strong>${f.insight}</div>
+
+  <div class="grid2" style="margin-top:20px">
+    <div class="panel">
+      <div class="panel-title">搜索量 Top 12</div>
+      <div class="chart-wrap"><canvas id="chart-${f.id}-bar"></canvas></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">难度 vs 搜索量（散点图）</div>
+      <div class="chart-wrap"><canvas id="chart-${f.id}-scatter"></canvas></div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:16px">
+    <div class="panel-title" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+      <span>关键词明细</span>
+      <button class="btn btn-copy" onclick="copyKeywords('${f.id}')">📋 复制全部关键词</button>
+    </div>
+    <div class="search-bar">
+      <input class="search-input" placeholder="搜索关键词..." oninput="filterTable('${f.id}',this.value,document.getElementById('intent-filter-${f.id}').value)">
+      <select class="filter-select" id="intent-filter-${f.id}" onchange="filterTable('${f.id}',document.querySelector('#section-${f.id} .search-input').value,this.value)">
+        <option value="">全部类型</option>
+        <option value="tool">工具词</option>
+        <option value="howto">教程词</option>
+        <option value="brand">品牌词</option>
+        <option value="commercial">商业词</option>
+        <option value="informational">信息词</option>
+      </select>
+    </div>
+    <div class="tbl-wrap">
+      <table id="table-${f.id}">
+        <thead><tr>
+          <th onclick="sortTable('table-${f.id}',0)">关键词 <span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('table-${f.id}',1)">月搜索量 <span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('table-${f.id}',2)">KD难度 <span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('table-${f.id}',3)">CPC <span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('table-${f.id}',4)">类型 <span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('table-${f.id}',5)">机会分 <span class="sort-icon">↕</span></th>
+        </tr></thead>
+        <tbody id="tbody-${f.id}"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+</div>`;
+    container.insertAdjacentHTML('beforeend',html);
+
+    // Populate table
+    renderFeatureTable(f);
+  });
+
+  // Build all charts after DOM is ready
+  setTimeout(()=>{FEATURES.forEach(buildFeatureCharts);},50);
+}
+
+function renderFeatureTable(f, filterText='', filterIntent=''){
+  const tbody=document.getElementById(`tbody-${f.id}`);
+  let rows=f.kws.filter(k=>{
+    const matchText=!filterText||k[0].toLowerCase().includes(filterText.toLowerCase());
+    const matchIntent=!filterIntent||k[4]===filterIntent;
+    return matchText&&matchIntent;
+  });
+  tbody.innerHTML=rows.map(k=>{
+    const s=oppScore(k[1],k[2]);
+    return `<tr data-kw="${k[0]}" data-vol="${k[1]}" data-kd="${k[2]}" data-cpc="${k[3]}" data-intent="${k[4]}" data-score="${s}">
+      <td style="font-weight:500">${k[0]}</td>
+      <td class="vol">${fmtVol(k[1])}</td>
+      <td><div class="kd-bar"><div class="kd-track"><div class="kd-fill" style="width:${k[2]}%;background:${kdColor(k[2])}"></div></div><span class="kd-num">${k[2]}</span></div></td>
+      <td>$${k[3].toFixed(2)}</td>
+      <td>${intentBadge(k[4])}</td>
+      <td class="opp ${oppClass(s)}">${s.toLocaleString()}</td>
+    </tr>`;
+  }).join('');
+}
+
+function filterTable(fid, text, intent){
+  const f=FEATURES.find(x=>x.id===fid);
+  if(f) renderFeatureTable(f,text,intent);
+}
+
+function buildFeatureCharts(f){
+  const sorted=[...f.kws].sort((a,b)=>b[1]-a[1]);
+  const top12=sorted.slice(0,12);
+
+  // Bar chart
+  new Chart(document.getElementById(`chart-${f.id}-bar`),{
+    type:'bar',
+    data:{
+      labels:top12.map(k=>k[0].length>20?k[0].slice(0,20)+'…':k[0]),
+      datasets:[{data:top12.map(k=>k[1]),backgroundColor:f.color+'BB',borderColor:f.color,borderWidth:1.5,borderRadius:4}]
+    },
+    options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>fmtVol(v)}}},responsive:true,maintainAspectRatio:false}
+  });
+
+  // Scatter chart
+  const intentColors={tool:'#3B82F6',howto:'#10B981',brand:'#8B5CF6',commercial:'#F59E0B',informational:'#9CA3AF'};
+  const byIntent={};
+  f.kws.forEach(k=>{
+    if(!byIntent[k[4]]) byIntent[k[4]]=[];
+    byIntent[k[4]].push({x:k[2],y:k[1],kw:k[0]});
+  });
+  const datasets=Object.entries(byIntent).map(([intent,pts])=>({
+    label:intent,
+    data:pts,
+    backgroundColor:(intentColors[intent]||'#999')+'99',
+    borderColor:intentColors[intent]||'#999',
+    borderWidth:1.5,
+    pointRadius:5,
+    pointHoverRadius:7
+  }));
+  new Chart(document.getElementById(`chart-${f.id}-scatter`),{
+    type:'scatter',
+    data:{datasets},
+    options:{
+      plugins:{
+        legend:{display:true,position:'bottom',labels:{boxWidth:10,font:{size:11}}},
+        tooltip:{callbacks:{label:(ctx)=>`${ctx.raw.kw}: 量${fmtVol(ctx.raw.y)}, KD${ctx.raw.x}`}}
+      },
+      scales:{
+        x:{title:{display:true,text:'KD难度'},min:0,max:100},
+        y:{title:{display:true,text:'月搜索量'},ticks:{callback:v=>fmtVol(v)}}
+      },
+      responsive:true,maintainAspectRatio:false
+    }
+  });
+}
+
+// ============================================================
+// SORT TABLE
+// ============================================================
+const sortState={};
+function sortTable(tableId, col){
+  const tbl=document.getElementById(tableId);
+  if(!tbl) return;
+  const key=tableId+'_'+col;
+  sortState[key]=(sortState[key]===1)?-1:1;
+  const dir=sortState[key];
+  const tbody=tbl.querySelector('tbody');
+  const rows=Array.from(tbody.querySelectorAll('tr'));
+  const attrs=['data-kw','data-vol','data-kd','data-cpc','data-intent','data-score'];
+  rows.sort((a,b)=>{
+    const av=a.getAttribute(attrs[col])||'';
+    const bv=b.getAttribute(attrs[col])||'';
+    const an=parseFloat(av), bn=parseFloat(bv);
+    if(!isNaN(an)&&!isNaN(bn)) return (an-bn)*dir;
+    return av.localeCompare(bv)*dir;
+  });
+  rows.forEach(r=>tbody.appendChild(r));
+  tbl.querySelectorAll('th').forEach((th,i)=>{
+    th.classList.toggle('sorted',i===col);
+    const icon=th.querySelector('.sort-icon');
+    if(icon) icon.textContent=i===col?(dir===1?'↓':'↑'):'↕';
+  });
+}
+
+// ============================================================
+// COPY KEYWORDS
+// ============================================================
+function copyKeywords(fid){
+  const f=FEATURES.find(x=>x.id===fid);
+  if(!f) return;
+  const text=f.kws.map(k=>k[0]).join('\n');
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn=document.querySelector(`#section-${fid} .btn-copy`);
+    const orig=btn.textContent;
+    btn.textContent='✅ 已复制！';
+    setTimeout(()=>btn.textContent=orig,2000);
+  });
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function showSection(id, tabEl){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  const sec=document.getElementById('section-'+id);
+  if(sec) sec.classList.add('active');
+  if(tabEl) tabEl.classList.add('active');
+  else {
+    const tabs=document.querySelectorAll('.nav-tab');
+    const idx=['overview','f1','f2','f3','f4','f5','f6','f7','f8','f9','f10'].indexOf(id);
+    if(idx>=0&&tabs[idx]) tabs[idx].classList.add('active');
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ============================================================
+// INIT
+// ============================================================
+buildFeatureSections();
+buildOverview();
+</script>
+</body>
+</html>
