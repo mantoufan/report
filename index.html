@@ -13,8 +13,11 @@ a{color:inherit;text-decoration:none}
 
 /* NAV */
 .nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #E5E7EB;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.nav-inner{max-width:1280px;margin:0 auto;padding:0 16px;display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none}
 .nav-inner::-webkit-scrollbar{display:none}
+.nav-back{flex-shrink:0;padding:0 16px;height:44px;display:flex;align-items:center;gap:4px;font-size:13px;font-weight:600;color:#6B7280;cursor:pointer;border-right:1px solid #E5E7EB;white-space:nowrap;transition:color .2s;background:none}
+.nav-back:hover{color:#374151}
+.nav-tabs{display:flex;align-items:center;gap:4px;padding:0 8px}
 .nav-tab{flex-shrink:0;padding:12px 14px;font-size:13px;font-weight:500;color:#6B7280;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all .2s}
 .nav-tab:hover{color:#374151}
 .nav-tab.active{color:#EC4899;border-bottom-color:#EC4899}
@@ -198,17 +201,20 @@ footer{text-align:center;padding:24px 16px;color:#9CA3AF;font-size:12px;border-t
 
 <nav class="nav">
   <div class="nav-inner">
-    <div class="nav-tab active" onclick="showSection('overview',this)">📊 总览</div>
-    <div class="nav-tab" onclick="showSection('f1',this)">🎭 换脸</div>
-    <div class="nav-tab" onclick="showSection('f2',this)">🕺 动作复刻</div>
-    <div class="nav-tab" onclick="showSection('f3',this)">🔗 视频衔接</div>
-    <div class="nav-tab" onclick="showSection('f4',this)">✂️ 内容编辑</div>
-    <div class="nav-tab" onclick="showSection('f5',this)">🖼️ 视频扩写</div>
-    <div class="nav-tab" onclick="showSection('f6',this)">⏩ 视频延长</div>
-    <div class="nav-tab" onclick="showSection('f7',this)">🎨 风格转换</div>
-    <div class="nav-tab" onclick="showSection('f8',this)">🌈 颜色校正</div>
-    <div class="nav-tab" onclick="showSection('f9',this)">🚫 去水印</div>
-    <div class="nav-tab" onclick="showSection('f10',this)">✍️ 提示词</div>
+    <div class="nav-back" onclick="history.back()">← 返回</div>
+    <div class="nav-tabs">
+      <div class="nav-tab active" onclick="showSection('overview',this)">📊 总览</div>
+      <div class="nav-tab" onclick="showSection('f1',this)">🎭 换脸</div>
+      <div class="nav-tab" onclick="showSection('f2',this)">🕺 动作复刻</div>
+      <div class="nav-tab" onclick="showSection('f3',this)">🔗 视频衔接</div>
+      <div class="nav-tab" onclick="showSection('f4',this)">✂️ 内容编辑</div>
+      <div class="nav-tab" onclick="showSection('f5',this)">🖼️ 视频扩写</div>
+      <div class="nav-tab" onclick="showSection('f6',this)">⏩ 视频延长</div>
+      <div class="nav-tab" onclick="showSection('f7',this)">🎨 风格转换</div>
+      <div class="nav-tab" onclick="showSection('f8',this)">🌈 颜色校正</div>
+      <div class="nav-tab" onclick="showSection('f9',this)">🚫 去水印</div>
+      <div class="nav-tab" onclick="showSection('f10',this)">✍️ 提示词</div>
+    </div>
   </div>
 </nav>
 
@@ -1032,11 +1038,20 @@ function showSection(id, tabEl){
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
   const sec=document.getElementById('section-'+id);
   if(sec) sec.classList.add('active');
-  if(tabEl) tabEl.classList.add('active');
-  else {
+  let activeTab=tabEl;
+  if(tabEl) {
+    tabEl.classList.add('active');
+  } else {
     const tabs=document.querySelectorAll('.nav-tab');
     const idx=['overview','f1','f2','f3','f4','f5','f6','f7','f8','f9','f10'].indexOf(id);
-    if(idx>=0&&tabs[idx]) tabs[idx].classList.add('active');
+    if(idx>=0&&tabs[idx]){tabs[idx].classList.add('active');activeTab=tabs[idx];}
+  }
+  if(activeTab){
+    const navTabs=document.querySelector('.nav-tabs');
+    const tabLeft=activeTab.offsetLeft;
+    const tabWidth=activeTab.offsetWidth;
+    const navWidth=navTabs.clientWidth;
+    navTabs.scrollTo({left:tabLeft-navWidth/2+tabWidth/2,behavior:'smooth'});
   }
   window.scrollTo({top:0,behavior:'smooth'});
 }
