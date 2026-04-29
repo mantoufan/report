@@ -263,7 +263,7 @@ footer{text-align:center;padding:24px 16px;color:#9CA3AF;font-size:12px;border-t
     </div>
 
     <div class="top-picks">
-      <div class="pick-card pick-1">
+      <div class="pick-card pick-1" onclick="showSection('f9',null)">
         <div class="pick-num">01</div>
         <div class="pick-body">
           <div class="pick-name">🚫 去水印</div>
@@ -277,7 +277,7 @@ footer{text-align:center;padding:24px 16px;color:#9CA3AF;font-size:12px;border-t
         </div>
       </div>
 
-      <div class="pick-card pick-2">
+      <div class="pick-card pick-2" onclick="showSection('f6',null)">
         <div class="pick-num">02</div>
         <div class="pick-body">
           <div class="pick-name">⏩ 视频延长</div>
@@ -291,7 +291,7 @@ footer{text-align:center;padding:24px 16px;color:#9CA3AF;font-size:12px;border-t
         </div>
       </div>
 
-      <div class="pick-card pick-3">
+      <div class="pick-card pick-3" onclick="showSection('f7',null)">
         <div class="pick-num">03</div>
         <div class="pick-body">
           <div class="pick-name">🎨 视频风格转换</div>
@@ -308,17 +308,17 @@ footer{text-align:center;padding:24px 16px;color:#9CA3AF;font-size:12px;border-t
 
     <div class="section-divider">也可以做，优先级低一些</div>
     <div class="mid-cards">
-      <div class="mid-card">
+      <div class="mid-card" onclick="showSection('f2',null)">
         <div class="mid-card-name">🕺 视频动作复刻</div>
         <div class="mid-card-why">image-to-video 大盘在涨（27K），但用户还没形成对这个具体功能的认知——"Animate Anyone"才 260 搜索。需要先做内容教育，等认知形成再收割。</div>
         <div class="mid-card-data">img2video <strong>27K</strong> · 均KD <strong>51</strong></div>
       </div>
-      <div class="mid-card">
+      <div class="mid-card" onclick="showSection('f4',null)">
         <div class="mid-card-name">✂️ 视频内容编辑</div>
         <div class="mid-card-why">图片 inpainting（magic eraser 40K）已验证了市场，视频版是自然延伸。目前视频专属词量小，先用图片词引流再转化是性价比最高的打法。</div>
         <div class="mid-card-data">magic eraser <strong>40K</strong> · 均KD <strong>60</strong></div>
       </div>
-      <div class="mid-card">
+      <div class="mid-card" onclick="showSection('f10',null)">
         <div class="mid-card-name">✍️ 提示词平台</div>
         <div class="mid-card-why">研发成本低，"kling ai prompts"（KD7）是数据里竞争最低的实用词。更适合作为主工具的内容运营配套，而不是独立产品单独立项。</div>
         <div class="mid-card-data">Kling 提示词 KD <strong>7</strong> · 总量 <strong>35K+</strong></div>
@@ -327,19 +327,19 @@ footer{text-align:center;padding:24px 16px;color:#9CA3AF;font-size:12px;border-t
 
     <div class="section-divider">这几个，不建议单独立项</div>
     <div class="skip-items">
-      <div class="skip-item">
+      <div class="skip-item" onclick="showSection('f1',null)">
         <span class="skip-item-name">🎭 视频换脸</span>
         <span class="skip-item-why">量最大，但主力词 KD 72–88，Vidwud、Reface 已深度占领，加上<strong>多国 deepfake 立法风险</strong>，不适合作为核心产品。</span>
       </div>
-      <div class="skip-item">
+      <div class="skip-item" onclick="showSection('f8',null)">
         <span class="skip-item-name">🌈 颜色校正</span>
         <span class="skip-item-why">DaVinci Resolve 和 Adobe 牢牢占着用户心智，<strong>独立工具几乎没有差异化空间</strong>，除非内嵌在更大产品里。</span>
       </div>
-      <div class="skip-item">
+      <div class="skip-item" onclick="showSection('f5',null)">
         <span class="skip-item-name">🖼️ 视频扩写</span>
         <span class="skip-item-why">outpaint CPC $10.35 说明付费意愿强，但视频专属词<strong>搜索量接近零</strong>，整体市场太小，单独立项 ROI 不够。</span>
       </div>
-      <div class="skip-item">
+      <div class="skip-item" onclick="showSection('f3',null)">
         <span class="skip-item-name">🔗 视频衔接</span>
         <span class="skip-item-why">技术上 Wan VACE 可以实现，但<strong>用户还没意识到这是独立需求</strong>，市场教育成本太高，更适合作为视频生成工作流的内置步骤。</span>
       </div>
