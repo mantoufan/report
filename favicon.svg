@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE4F0"/>
+      <stop offset="100%" stop-color="#EFF6FF"/>
+    </linearGradient>
+    <linearGradient id="bar1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F9A8D4"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+    <linearGradient id="bar2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#C4B5FD"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <linearGradient id="bar3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#93C5FD"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    <linearGradient id="bar4" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6EE7B7"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <rect width="64" height="64" rx="14" fill="none" stroke="#FBCFE8" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Baseline -->
+  <line x1="7" y1="53" x2="57" y2="53" stroke="#E5E7EB" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Bars -->
+  <rect x="7"  y="40" width="11" height="13" rx="3" fill="url(#bar1)"/>
+  <rect x="21" y="30" width="11" height="23" rx="3" fill="url(#bar2)"/>
+  <rect x="35" y="18" width="11" height="35" rx="3" fill="url(#bar3)"/>
+  <rect x="49" y="25" width="11" height="28" rx="3" fill="url(#bar4)"/>
+
+  <!-- Trend line -->
+  <polyline
+    points="12.5,38 26.5,28 40.5,16 54.5,23"
+    stroke="#F97316"
+    stroke-width="2.5"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Trend dots -->
+  <circle cx="12.5" cy="38" r="2.5" fill="#F97316"/>
+  <circle cx="26.5" cy="28" r="2.5" fill="#F97316"/>
+  <circle cx="40.5" cy="16" r="2.5" fill="#F97316"/>
+  <circle cx="54.5" cy="23" r="2.5" fill="#F97316"/>
+</svg>
