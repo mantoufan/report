@@ -1076,6 +1076,7 @@ buildFeatureSections();
 buildOverview();
 const initId=location.hash.slice(1);
 if(initId&&VALID_IDS.includes(initId)) showSection(initId,null);
+else document.querySelector('.nav-back').style.display='none';
 </script>
 </body>
 </html>
