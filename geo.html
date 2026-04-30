@@ -84,7 +84,7 @@ tr:last-child td{border-bottom:none}
 .btn{padding:7px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:none;transition:all .2s}
 .btn-copy{background:#F3F4F6;color:#374151}
 .btn-copy:hover{background:#E5E7EB}
-.feat-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-bottom:24px}
+.feat-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:24px}
 .feat-card{background:#fff;border-radius:10px;padding:14px 16px;border:1px solid #F3F4F6;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:12px}
 .feat-card:hover{border-color:#C7D2FE;box-shadow:0 4px 12px rgba(0,0,0,.08)}
 .feat-card-icon{font-size:24px;flex-shrink:0}
@@ -107,7 +107,7 @@ tr:last-child td{border-bottom:none}
 .skip-item-why{display:block;font-size:12px;color:#6B7280;line-height:1.65;margin-bottom:8px}
 .section-divider{font-size:14px;font-weight:700;color:#374151;margin-bottom:12px;display:flex;align-items:center;gap:10px}
 .section-divider::after{content:'';flex:1;height:1px;background:#F3F4F6}
-.concl-closing{font-size:13px;color:#374151;line-height:1.85;padding:16px 20px;background:linear-gradient(135deg,#EEF2FF 0%,#F0F9FF 50%,#ECFDF5 100%);border-radius:10px;border-left:3px solid #6366F1}
+.concl-closing{font-size:13px;color:#374151;line-height:1.85;padding:16px 20px;background:linear-gradient(135deg,#EEF2FF 0%,#F0F9FF 50%,#ECFDF5 100%);border-radius:10px;border-left:3px solid #6366F1;margin-bottom:24px}
 .concl-closing strong{color:#111827}
 .dpills{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
 .dpill{display:inline-flex;align-items:center;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px}
@@ -117,10 +117,21 @@ tr:last-child td{border-bottom:none}
 .dp-kd-high{background:#FEE2E2;color:#991B1B}
 .dp-cpc{background:#F5F3FF;color:#5B21B6}
 .dp-neu{background:#F3F4F6;color:#6B7280}
+.dp-zero{background:#F9FAFB;color:#9CA3AF;text-decoration:line-through}
 .tip-icon{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border-radius:50%;background:#E5E7EB;color:#9CA3AF;font-size:9px;font-weight:700;cursor:help;position:relative;margin-left:4px;vertical-align:middle;flex-shrink:0}
-.tip-icon::after{content:attr(data-tip);position:absolute;left:50%;transform:translateX(-50%);top:calc(100% + 7px);background:#1F2937;color:#fff;font-size:11px;font-weight:400;line-height:1.6;padding:7px 11px;border-radius:7px;white-space:normal;width:200px;z-index:9999;pointer-events:none;opacity:0;transition:opacity .15s}
+.tip-icon::after{content:attr(data-tip);position:absolute;left:50%;transform:translateX(-50%);top:calc(100% + 7px);background:#1F2937;color:#fff;font-size:11px;font-weight:400;line-height:1.6;padding:7px 11px;border-radius:7px;white-space:normal;width:220px;z-index:9999;pointer-events:none;opacity:0;transition:opacity .15s}
 .tip-icon::before{content:'';position:absolute;left:50%;transform:translateX(-50%);top:calc(100% + 3px);border:4px solid transparent;border-bottom-color:#1F2937;z-index:9999;pointer-events:none;opacity:0;transition:opacity .15s}
 .tip-icon:hover::after,.tip-icon:hover::before{opacity:1}
+/* Long-tail panel */
+.longtail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:16px}
+.longtail-card{background:#F8F9FB;border:1px solid #F3F4F6;border-radius:10px;padding:14px 16px}
+.longtail-card-title{font-size:12px;font-weight:700;color:#374151;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.longtail-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid #F3F4F6;font-size:12px}
+.longtail-row:last-child{border-bottom:none}
+.longtail-kw{color:#6B7280}
+.longtail-vol{font-weight:600;color:#9CA3AF}
+.longtail-vol.has-vol{color:#059669}
+.longtail-insight{font-size:11px;color:#9CA3AF;margin-top:8px;line-height:1.55;padding-top:8px;border-top:1px dashed #E5E7EB}
 footer{text-align:center;padding:24px 16px;color:#9CA3AF;font-size:12px;border-top:1px solid #F3F4F6;background:#fff;margin-top:32px}
 @media(max-width:600px){.hero h1{font-size:22px}.cards{grid-template-columns:1fr 1fr}.feat-header{flex-direction:column}}
 </style>
@@ -132,26 +143,28 @@ footer{text-align:center;padding:24px 16px;color:#9CA3AF;font-size:12px;border-t
     <div class="nav-back" onclick="history.back()">← 返回</div>
     <div class="nav-tabs">
       <div class="nav-tab active" onclick="showSection('overview',this)">📊 总览</div>
-      <div class="nav-tab" onclick="showSection('f1',this)">🤖 GEO核心</div>
-      <div class="nav-tab" onclick="showSection('f2',this)">💬 AEO答案引擎</div>
-      <div class="nav-tab" onclick="showSection('f3',this)">👁️ AI品牌监控</div>
-      <div class="nav-tab" onclick="showSection('f4',this)">✍️ AI内容优化</div>
-      <div class="nav-tab" onclick="showSection('f5',this)">🏷️ 结构化数据</div>
-      <div class="nav-tab" onclick="showSection('f6',this)">📈 AI排名追踪</div>
-      <div class="nav-tab" onclick="showSection('f7',this)">🔍 SEO审计</div>
-      <div class="nav-tab" onclick="showSection('f8',this)">🔑 关键词研究</div>
+      <div class="nav-tab" onclick="showSection('f1',this)">🌐 AI搜索优化</div>
+      <div class="nav-tab" onclick="showSection('f2',this)">👁️ AI品牌监控</div>
+      <div class="nav-tab" onclick="showSection('f3',this)">✍️ AI内容优化</div>
+      <div class="nav-tab" onclick="showSection('f4',this)">🏷️ 结构化数据</div>
+      <div class="nav-tab" onclick="showSection('f5',this)">📈 AI排名追踪</div>
+      <div class="nav-tab" onclick="showSection('f6',this)">🔍 SEO审计</div>
+      <div class="nav-tab" onclick="showSection('f7',this)">🔑 关键词研究</div>
+      <div class="nav-tab" onclick="showSection('f8',this)">🏛️ 内容权威度</div>
+      <div class="nav-tab" onclick="showSection('f9',this)">📰 数字公关</div>
+      <div class="nav-tab" onclick="showSection('f10',this)">🤖 AI SEO Agent</div>
     </div>
   </div>
 </nav>
 
 <div class="hero">
   <h1>GEO工具 SEO关键词调研报告</h1>
-  <p>8大功能分类 · 覆盖生成引擎优化全链路 · 数据来源 Semrush</p>
+  <p>10大功能分类 · 覆盖生成引擎优化全链路 · 数据来源 Semrush</p>
   <div class="hero-meta">
     <span class="badge">📅 2026年</span>
     <span class="badge">🔍 数据库 US</span>
     <span class="badge">📊 Semrush</span>
-    <span class="badge">🔑 关键词覆盖 71+</span>
+    <span class="badge">🔑 关键词覆盖 100+</span>
     <span class="badge">🌎 北美市场</span>
   </div>
 </div>
@@ -199,57 +212,98 @@ footer{text-align:center;padding:24px 16px;color:#9CA3AF;font-size:12px;border-t
 
     <div class="section-divider">优先投入</div>
     <div class="mid-cards">
-      <div class="mid-card" onclick="showSection('f2',null)">
-        <div class="mid-card-name">💬 AEO / 答案引擎优化</div>
-        <div class="mid-card-why">「aeo seo」月搜索4.4K、KD仅43，是整个报告量价比最优的词。「answer engine optimization」2.9K/KD41同步增长。AI答案引擎快速普及，工具侧供给严重不足，现在入场成本最低。「ai answer optimization」CPC高达$19.59，付费意愿极强。</div>
-        <div class="dpills"><span class="dpill dp-vol">aeo seo 4.4K</span><span class="dpill dp-vol">answer engine opt. 2.9K</span><span class="dpill dp-kd-mid">均KD 33</span><span class="dpill dp-cpc">ai answer CPC $19.59</span></div>
+      <div class="mid-card" onclick="showSection('f1',null)">
+        <div class="mid-card-name">🌐 AI搜索优化（GEO + AEO）</div>
+        <div class="mid-card-why">GEO与AEO本质是同一需求，合并后覆盖市场最广。「aeo seo」4.4K/KD43、「answer engine optimization」2.9K/KD41是量价比最优的入口词。低竞争AI原生词「llm seo」(KD34)、「llm optimization」(KD27)高CPC验证商业价值，现在布局成本最低。「ai answer optimization」CPC $19.59，付费意愿极强。</div>
+        <div class="dpills"><span class="dpill dp-vol">aeo seo 4.4K</span><span class="dpill dp-vol">ai seo 8.1K</span><span class="dpill dp-kd-low">llm seo KD34</span><span class="dpill dp-kd-low">llm opt. KD27</span><span class="dpill dp-cpc">ai answer CPC $19.59</span></div>
       </div>
-      <div class="mid-card" onclick="showSection('f3',null)">
+      <div class="mid-card" onclick="showSection('f2',null)">
         <div class="mid-card-name">👁️ AI品牌监控</div>
         <div class="mid-card-why">整类KD极低（19-22）——chatgpt brand monitoring、ai citation tracking、llm brand monitoring几乎零SEO竞争。市场处于教育早期，先布局者可以零成本建立品类权威。firegeo正在这一赛道直接参与，方向明确。</div>
         <div class="dpills"><span class="dpill dp-kd-low">chatgpt监控 KD22</span><span class="dpill dp-kd-low">ai citation KD20</span><span class="dpill dp-kd-low">llm监控 KD20</span><span class="dpill dp-cpc">CPC $5–11</span></div>
       </div>
-      <div class="mid-card" onclick="showSection('f1',null)">
-        <div class="mid-card-name">🤖 GEO核心 / LLM SEO</div>
-        <div class="mid-card-why">「generative engine optimization」已有5.4K搜索，「ai seo」达8.1K。真正的机会在低竞争AI原生词：「llm seo」(KD34, $8.01)、「llm optimization」(KD27, $5.88)——高CPC、低难度，现在布局成本最低。</div>
-        <div class="dpills"><span class="dpill dp-vol">ai seo 8.1K</span><span class="dpill dp-vol">GEO 5.4K</span><span class="dpill dp-kd-low">llm seo KD34</span><span class="dpill dp-kd-low">llm opt. KD27</span><span class="dpill dp-cpc">均CPC $8+</span></div>
+      <div class="mid-card" onclick="showSection('f9',null)">
+        <div class="mid-card-name">📰 数字公关 for AI</div>
+        <div class="mid-card-why">「digital pr agency」2.9K/KD39、CPC $17.39——全报告CPC最高类别之一，B2B付费意愿极强。在GEO语境下，digital PR的价值从"获取backlink"升级为"出现在AI模型高度参考的权威来源"，是GEO效果建设的外部链路。「pr link building」KD仅17，精准低竞争切入点。</div>
+        <div class="dpills"><span class="dpill dp-vol">digital pr 4.4K</span><span class="dpill dp-kd-low">pr link building KD17</span><span class="dpill dp-kd-low">pr seo KD23</span><span class="dpill dp-cpc">agency CPC $17.39</span></div>
       </div>
     </div>
 
     <div class="section-divider">也可以做，优先级低一些</div>
     <div class="mid-cards">
-      <div class="mid-card" onclick="showSection('f4',null)">
-        <div class="mid-card-name">✍️ AI内容优化</div>
-        <div class="mid-card-why">「ai content optimization」(880/KD35/$8.85)是稳定入口。「geo content strategy」(KD11)是全报告KD最低的有意义词。更适合作为主产品内容矩阵配套，而非独立立项。</div>
-        <div class="dpills"><span class="dpill dp-vol">ai content opt. 880</span><span class="dpill dp-kd-low">均KD 35</span><span class="dpill dp-cpc">CPC $8.85</span></div>
+      <div class="mid-card" onclick="showSection('f8',null)">
+        <div class="mid-card-name">🏛️ 内容权威度（Topical Authority + E-E-A-T）</div>
+        <div class="mid-card-why">「eeat」6.6K、「topical authority」2.4K，AI模型用这套框架评估内容值不值得引用。最大机会词：「content gap analysis」1.9K/KD23——竞争极低、需求清晰。「expertise seo」CPC $15.47，商业价值极高。适合作为AI搜索优化工具的内置功能模块。</div>
+        <div class="dpills"><span class="dpill dp-vol">eeat 6.6K</span><span class="dpill dp-kd-low">content gap KD23</span><span class="dpill dp-kd-low">topical auth. tool KD18</span><span class="dpill dp-cpc">expertise CPC $15.47</span></div>
       </div>
-      <div class="mid-card" onclick="showSection('f6',null)">
-        <div class="mid-card-name">📈 AI排名追踪</div>
-        <div class="mid-card-why">传统rank tracker词量大但竞争高（KD53-72）；AI专属词「ai rank tracker」(KD34)、「llm rank tracker」(KD24)量小竞争极低。CPC极高（$8-16）验证商业价值，需配合市场教育。</div>
-        <div class="dpills"><span class="dpill dp-kd-low">llm rank tracker KD24</span><span class="dpill dp-kd-low">ai rank tracker KD34</span><span class="dpill dp-cpc">rank tracking CPC $16.92</span></div>
+      <div class="mid-card" onclick="showSection('f10',null)">
+        <div class="mid-card-name">🤖 AI SEO Agent</div>
+        <div class="mid-card-why">「ai seo software」CPC $18.78——全报告最高CPC词，付费意愿爆表。「seo ai agent」390/KD17，精准触达想要自动化SEO的高价值用户。「seo copilot」KD23，低竞争入口。注意：产品要用"ai seo agent/tool"定位，不要用"geo agent"（仅20量，无市场）。</div>
+        <div class="dpills"><span class="dpill dp-cpc">ai seo software CPC $18.78</span><span class="dpill dp-kd-low">seo ai agent KD17</span><span class="dpill dp-kd-low">seo copilot KD23</span><span class="dpill dp-vol">ai seo tool 720</span></div>
       </div>
     </div>
 
     <div class="section-divider">这几个，不建议单独立项</div>
     <div class="skip-items">
-      <div class="skip-item" onclick="showSection('f7',null)">
+      <div class="skip-item" onclick="showSection('f6',null)">
         <span class="skip-item-name">🔍 SEO审计工具</span>
         <span class="skip-item-why">Ahrefs、SEMrush、Screaming Frog长期占领，主力词KD在65-89。除非专门针对AI搜索做出差异化，否则无法突破。</span>
         <div class="dpills"><span class="dpill dp-vol">seo checker 14.8K</span><span class="dpill dp-kd-high">主力词 KD65-89</span><span class="dpill dp-neu">巨头主导</span></div>
       </div>
-      <div class="skip-item" onclick="showSection('f8',null)">
+      <div class="skip-item" onclick="showSection('f7',null)">
         <span class="skip-item-name">🔑 关键词研究工具</span>
-        <span class="skip-item-why">绝对红海，KD 41-100，「keyword tool」和「keyword finder」均满分100。几乎没有SEO可攻空间，唯一机会是长尾词（KD41-46）但体量有限。</span>
+        <span class="skip-item-why">绝对红海，KD 41-100，「keyword tool」和「keyword finder」均满分100。几乎没有SEO可攻空间。</span>
         <div class="dpills"><span class="dpill dp-vol">keyword planner 12.1K</span><span class="dpill dp-kd-high">主力词 KD91-100</span><span class="dpill dp-neu">完全红海</span></div>
       </div>
-      <div class="skip-item" onclick="showSection('f5',null)">
+      <div class="skip-item" onclick="showSection('f4',null)">
         <span class="skip-item-name">🏷️ 结构化数据生成</span>
-        <span class="skip-item-why">Google自带工具主导市场，独立工具差异化难度高。「schema markup tool」KD高达80，低竞争入口词量过小，不够支撑独立产品。</span>
+        <span class="skip-item-why">Google自带工具主导市场，独立工具差异化难度高。「schema markup tool」KD高达80，低竞争入口词量过小。</span>
         <div class="dpills"><span class="dpill dp-vol">structured data seo 2.9K</span><span class="dpill dp-kd-high">schema tool KD80</span><span class="dpill dp-neu">Google主导</span></div>
       </div>
     </div>
 
-    <p class="concl-closing">如果只能选一个，选<strong>AEO/答案引擎优化</strong>——搜索量最优、KD可攻、CPC验证商业价值，市场还在高速成长期。有资源做三个则加上<strong>AI品牌监控</strong>（firegeo已在做）和<strong>LLM SEO</strong>——三者用户高度重叠（都是想在AI时代提升品牌曝光的营销人），一套内容矩阵可以同时服务三个方向，资源效率最高。</p>
+    <p class="concl-closing">如果只能选一个，选<strong>AI搜索优化（GEO/AEO）</strong>——市场体量最大、KD可攻、高CPC验证商业价值。有资源做三个则加上<strong>AI品牌监控</strong>（firegeo已在做）和<strong>数字公关 for AI</strong>——三者用户高度重叠（AI时代的营销人），一套内容矩阵可以同时服务三个方向，资源效率最高。</p>
+
+    <div class="panel-title" style="margin-bottom:16px">🔭 延伸调研：GEO 长尾词渗透现状</div>
+    <p style="font-size:13px;color:#6B7280;margin-bottom:16px;line-height:1.7">我们额外调研了 GEO 在建站平台、AI模型、社交平台、行业垂直四个维度的长尾搜索需求。<strong>核心发现：GEO 概念尚未渗透到任何细分场景，但这本身意味着极低成本的内容占位机会。</strong></p>
+    <div class="longtail-grid">
+      <div class="longtail-card">
+        <div class="longtail-card-title">🏪 建站平台 + GEO</div>
+        <div class="longtail-row"><span class="longtail-kw">shopify geo</span><span class="longtail-vol has-vol">20/月</span></div>
+        <div class="longtail-row"><span class="longtail-kw">shopify ai seo</span><span class="longtail-vol has-vol">30/月</span></div>
+        <div class="longtail-row"><span class="longtail-kw">wordpress geo</span><span class="longtail-vol has-vol">20/月</span></div>
+        <div class="longtail-row"><span class="longtail-kw">webflow geo</span><span class="longtail-vol">0</span></div>
+        <div class="longtail-row"><span class="longtail-kw">woocommerce geo</span><span class="longtail-vol">0</span></div>
+        <div class="longtail-insight">全部 ≤30。GEO概念还未在建站社区形成具体搜索意识。现在布局"Shopify GEO指南"类内容，成本接近零。</div>
+      </div>
+      <div class="longtail-card">
+        <div class="longtail-card-title">🧠 AI模型 + GEO</div>
+        <div class="longtail-row"><span class="longtail-kw">chatgpt geo</span><span class="longtail-vol has-vol">10/月</span></div>
+        <div class="longtail-row"><span class="longtail-kw">gemini geo</span><span class="longtail-vol has-vol">20/月</span></div>
+        <div class="longtail-row"><span class="longtail-kw">perplexity geo</span><span class="longtail-vol has-vol">20/月</span></div>
+        <div class="longtail-row"><span class="longtail-kw">claude geo</span><span class="longtail-vol">0</span></div>
+        <div class="longtail-row"><span class="longtail-kw">grok geo</span><span class="longtail-vol">0</span></div>
+        <div class="longtail-insight">全部 ≤20。用户还未形成"针对具体AI优化"的搜索习惯。Perplexity是最早有专属优化需求的平台，值得优先布局。</div>
+      </div>
+      <div class="longtail-card">
+        <div class="longtail-card-title">📱 社交平台 + GEO</div>
+        <div class="longtail-row"><span class="longtail-kw">tiktok geo</span><span class="longtail-vol has-vol">10/月</span></div>
+        <div class="longtail-row"><span class="longtail-kw">instagram geo</span><span class="longtail-vol has-vol">10/月</span></div>
+        <div class="longtail-row"><span class="longtail-kw">youtube seo ai</span><span class="longtail-vol has-vol">50/月</span></div>
+        <div class="longtail-row"><span class="longtail-kw">linkedin geo</span><span class="longtail-vol has-vol">20/月</span></div>
+        <div class="longtail-row"><span class="longtail-kw">facebook geo</span><span class="longtail-vol has-vol">20/月</span></div>
+        <div class="longtail-insight">全部 ≤50。「youtube seo ai」是社交类中量最大的词（50/月，KD16），YouTube是社交平台中AI搜索最活跃的场景。</div>
+      </div>
+      <div class="longtail-card">
+        <div class="longtail-card-title">🏭 行业垂直 + GEO</div>
+        <div class="longtail-row"><span class="longtail-kw">ecommerce geo</span><span class="longtail-vol has-vol" style="color:#059669;font-weight:700">140/月 ⭐</span></div>
+        <div class="longtail-row"><span class="longtail-kw">real estate seo ai</span><span class="longtail-vol has-vol">10/月</span></div>
+        <div class="longtail-row"><span class="longtail-kw">jewelry seo ai</span><span class="longtail-vol">0</span></div>
+        <div class="longtail-row"><span class="longtail-kw">fashion seo ai</span><span class="longtail-vol">0</span></div>
+        <div class="longtail-row"><span class="longtail-kw">furniture seo ai</span><span class="longtail-vol">0</span></div>
+        <div class="longtail-insight">唯一有意义的垂直词：ecommerce geo（140/KD15）。<strong>电商是最早形成GEO意识的行业</strong>，是垂直内容布局的首选切入口。</div>
+      </div>
+    </div>
   </div>
 
 </div>
@@ -264,16 +318,18 @@ footer{text-align:center;padding:24px 16px;color:#9CA3AF;font-size:12px;border-t
 <script>
 const FEATURES = [
 {
-  id:'f1', nav:'GEO核心', emoji:'🤖', color:'#6366F1', bg:'#EEF2FF', border:'#C7D2FE',
-  name:'GEO / 生成引擎优化', nameEn:'Generative Engine Optimization',
-  desc:'为AI搜索引擎（ChatGPT、Perplexity、Claude等）优化内容可见度和引用率，是传统SEO在生成式AI时代的演进。',
+  id:'f1', nav:'AI搜索优化', emoji:'🌐', color:'#6366F1', bg:'#EEF2FF', border:'#C7D2FE',
+  name:'AI搜索优化（GEO / AEO）', nameEn:'Generative & Answer Engine Optimization',
+  desc:'让品牌内容出现在ChatGPT、Perplexity、Claude、Google AI Overview等AI引擎的生成式答案中。GEO（生成引擎优化）与AEO（答案引擎优化）本质是同一需求，合并为一个工具方向。',
   tech:'Profound · Otterly.ai · Goodie.ai · seo-geo-claude-skills',
   stage:'growing', stageLabel:'成长市场',
-  insight:'GEO是SEO的下一代演进。「generative engine optimization」(5.4K，KD79)已成气候但竞争也在加速。<strong>真正的机会在低竞争AI原生词</strong>：「llm seo」(KD34)、「llm optimization」(KD27)、「geo optimization」(KD40)——均具备高商业价值CPC（$6-11），SEO布局成本最低。高CPC（均$8+）证明付费意愿强烈，商业变现路径明确。',
+  insight:'GEO与AEO本质是同一需求：让品牌出现在AI答案中。「ai seo」8.1K、「generative engine optimization」5.4K，头部词竞争偏高（KD60-79）。<strong>真正的低竞争机会</strong>：「llm seo」(KD34)、「llm optimization」(KD27)——高CPC（$6-11）验证商业价值，现在布局成本最低。AEO侧「aeo seo」(4.4K/KD43)和「answer engine optimization」(2.9K/KD41)是量价比最优的入口词，「ai answer optimization」CPC高达$19.59，是整个报告商业意图最强的词之一。',
   kws:[
     ['ai seo',8100,68,10.68,'tool'],
     ['generative engine optimization',5400,79,8.28,'tool'],
+    ['aeo seo',4400,43,7.66,'tool'],
     ['ai search engine optimization',3600,60,10.68,'tool'],
+    ['answer engine optimization',2900,41,6.99,'tool'],
     ['geo seo',2400,48,6.09,'tool'],
     ['ai search optimization',1900,50,11.41,'tool'],
     ['llm seo',1300,34,8.01,'tool'],
@@ -281,33 +337,20 @@ const FEATURES = [
     ['geo optimization',720,40,8.08,'tool'],
     ['llm optimization',590,27,5.88,'tool'],
     ['generative ai seo',390,64,7.87,'tool'],
-    ['ai search ranking',170,68,9.92,'tool'],
-    ['optimize for chatgpt',70,28,7.84,'howto'],
-    ['optimize for ai',10,0,9.23,'howto'],
-  ]
-},
-{
-  id:'f2', nav:'AEO答案引擎', emoji:'💬', color:'#0EA5E9', bg:'#F0F9FF', border:'#BAE6FD',
-  name:'AEO / 答案引擎优化', nameEn:'Answer Engine Optimization',
-  desc:'针对AI问答引擎（Perplexity、ChatGPT Search、SGE等）的内容优化，让品牌出现在AI生成的答案中。',
-  tech:'Perplexity · ChatGPT Search · Google SGE · Bing Copilot',
-  stage:'growing', stageLabel:'成长市场',
-  insight:'「aeo seo」月搜索4.4K，KD仅43——<strong>全报告量价比最优的词</strong>。「answer engine optimization」2.9K/KD41同步增长，布局窗口正在关闭。「ai answer optimization」CPC高达$19.59，在整个报告中排名第一，反映了极强的商业转化潜力。「featured snippet optimization」(KD31)和「position zero seo」(KD15)是AI答案出现前的低竞争内容入口。',
-  kws:[
-    ['aeo seo',4400,43,7.66,'tool'],
-    ['answer engine optimization',2900,41,6.99,'tool'],
     ['featured snippet optimization',390,31,0.00,'tool'],
     ['ai featured snippets',260,15,0.00,'informational'],
+    ['ai search ranking',170,68,9.92,'tool'],
     ['chatgpt seo optimization',140,58,8.31,'tool'],
     ['answer engine',110,35,3.23,'informational'],
     ['position zero seo',70,15,0.00,'howto'],
     ['perplexity seo',70,27,6.03,'tool'],
+    ['optimize for chatgpt',70,28,7.84,'howto'],
     ['ai answer optimization',50,28,19.59,'tool'],
     ['optimize for perplexity',50,28,0.00,'howto'],
   ]
 },
 {
-  id:'f3', nav:'AI品牌监控', emoji:'👁️', color:'#8B5CF6', bg:'#F5F3FF', border:'#DDD6FE',
+  id:'f2', nav:'AI品牌监控', emoji:'👁️', color:'#8B5CF6', bg:'#F5F3FF', border:'#DDD6FE',
   name:'AI品牌监控 / AI引用追踪', nameEn:'AI Brand Monitoring & Citation Tracking',
   desc:'监控品牌在ChatGPT、Perplexity、Claude等AI引擎中的被提及和引用情况，是GEO效果评估的核心工具。',
   tech:'firegeo · Profound · Brandwatch · Mentionlytics',
@@ -324,7 +367,7 @@ const FEATURES = [
   ]
 },
 {
-  id:'f4', nav:'AI内容优化', emoji:'✍️', color:'#10B981', bg:'#ECFDF5', border:'#A7F3D0',
+  id:'f3', nav:'AI内容优化', emoji:'✍️', color:'#10B981', bg:'#ECFDF5', border:'#A7F3D0',
   name:'AI内容优化', nameEn:'AI Content Optimization for GEO',
   desc:'针对AI引擎优化内容结构、实体密度、引用可信度，让内容更容易被AI模型引用和推荐。',
   tech:'Clearscope · Surfer SEO · MarketMuse · seo-geo-claude-skills',
@@ -341,7 +384,7 @@ const FEATURES = [
   ]
 },
 {
-  id:'f5', nav:'结构化数据', emoji:'🏷️', color:'#F59E0B', bg:'#FFFBEB', border:'#FDE68A',
+  id:'f4', nav:'结构化数据', emoji:'🏷️', color:'#F59E0B', bg:'#FFFBEB', border:'#FDE68A',
   name:'结构化数据 / Schema Markup', nameEn:'Schema Markup & Structured Data',
   desc:'为网页生成Schema.org结构化标记，帮助搜索引擎和AI更好地理解内容语义，是GEO技术优化的重要组成。',
   tech:'Google Rich Results Test · Schema App · Merkle Schema Generator',
@@ -360,7 +403,7 @@ const FEATURES = [
   ]
 },
 {
-  id:'f6', nav:'AI排名追踪', emoji:'📈', color:'#3B82F6', bg:'#EFF6FF', border:'#BFDBFE',
+  id:'f5', nav:'AI排名追踪', emoji:'📈', color:'#3B82F6', bg:'#EFF6FF', border:'#BFDBFE',
   name:'AI排名追踪', nameEn:'AI Search Rank Tracking',
   desc:'追踪品牌/关键词在AI搜索引擎（Perplexity、ChatGPT Search等）中的排名和引用位置，区别于传统Google排名追踪。',
   tech:'Profound · SEMrush · Ahrefs · Moz Pro',
@@ -377,7 +420,7 @@ const FEATURES = [
   ]
 },
 {
-  id:'f7', nav:'SEO审计', emoji:'🔍', color:'#EF4444', bg:'#FEF2F2', border:'#FECACA',
+  id:'f6', nav:'SEO审计', emoji:'🔍', color:'#EF4444', bg:'#FEF2F2', border:'#FECACA',
   name:'SEO审计工具', nameEn:'SEO Audit & Technical SEO',
   desc:'网站技术SEO检查、站内优化评分、页面速度分析，包括针对AI搜索的专项技术审计。',
   tech:'Ahrefs · SEMrush · Screaming Frog · Google Search Console',
@@ -396,12 +439,12 @@ const FEATURES = [
   ]
 },
 {
-  id:'f8', nav:'关键词研究', emoji:'🔑', color:'#14B8A6', bg:'#F0FDFA', border:'#99F6E4',
+  id:'f7', nav:'关键词研究', emoji:'🔑', color:'#14B8A6', bg:'#F0FDFA', border:'#99F6E4',
   name:'关键词研究工具', nameEn:'Keyword Research Tools',
   desc:'发现和分析SEO/GEO关键词机会，包括搜索量、竞争难度、CPC评估，是SEO工作流的起点。',
   tech:'SEMrush · Ahrefs · Google Keyword Planner · Ubersuggest',
   stage:'mature', stageLabel:'成熟市场',
-  insight:'绝对红海，KD 41-100。「keyword tool」和「keyword finder」均达KD满分100，「keyword research tool」KD91，几乎没有可攻空间。<strong>唯一例外</strong>：「long tail keyword tool」(KD41)和「keyword difficulty tool」(KD46)——相对低竞争，可作为小切入口。注意「keyword planner」CPC高达$148是因为该词主要指Google官方产品，数据失真，不具参考价值。',
+  insight:'绝对红海，KD 41-100。「keyword tool」和「keyword finder」均达KD满分100，完全没有SEO可攻空间。<strong>唯一例外</strong>：「long tail keyword tool」(KD41)和「keyword difficulty tool」(KD46)——相对低竞争，可作为小切入口。注意「keyword planner」CPC $148.48是异常值，因该词主要指Google官方产品，数据失真，不具参考价值。',
   kws:[
     ['keyword planner',12100,94,148.48,'brand'],
     ['keyword research tool',8100,91,4.54,'tool'],
@@ -412,6 +455,73 @@ const FEATURES = [
     ['keyword research free',880,95,3.01,'commercial'],
     ['find keywords for seo',880,96,4.32,'howto'],
     ['long tail keyword tool',880,41,0.00,'tool'],
+  ]
+},
+{
+  id:'f8', nav:'内容权威度', emoji:'🏛️', color:'#7C3AED', bg:'#F5F3FF', border:'#DDD6FE',
+  name:'内容权威度（Topical Authority + E-E-A-T）', nameEn:'Topical Authority & E-E-A-T Scoring',
+  desc:'评估并提升内容的话题覆盖广度（Topical Authority）和可信度信号（E-E-A-T），是AI引擎决定是否引用内容的核心评估框架。',
+  tech:'MarketMuse · Frase · Surfer SEO · Semrush Enterprise',
+  stage:'growing', stageLabel:'成长市场',
+  insight:'「eeat」月搜索6.6K、「topical authority」2.4K——AI模型和Google都在用这套框架评估内容是否值得引用。<strong>最大机会词</strong>：「content gap analysis」(1.9K/KD23)——竞争极低，用户需求清晰，精准锚定"我的内容覆盖够全吗"的搜索意图。「expertise seo」CPC高达$15.47，商业价值极高。「topical authority tool」(KD18)和「content pillar strategy」(KD20)是低竞争占位点，先发布局成本极低。',
+  kws:[
+    ['eeat',6600,62,0.00,'informational'],
+    ['topical authority',2400,61,3.11,'tool'],
+    ['content gap analysis',1900,23,6.45,'tool'],
+    ['eeat seo',1000,70,0.68,'tool'],
+    ['topical authority seo',720,43,3.50,'tool'],
+    ['pillar page seo',590,39,0.00,'tool'],
+    ['expertise seo',590,38,15.47,'tool'],
+    ['content cluster seo',140,43,0.00,'tool'],
+    ['topic cluster seo',140,45,0.00,'tool'],
+    ['topical authority tool',110,18,0.00,'tool'],
+    ['content pillar strategy',90,20,6.96,'tool'],
+    ['e-e-a-t seo',70,69,0.68,'tool'],
+  ]
+},
+{
+  id:'f9', nav:'数字公关', emoji:'📰', color:'#EC4899', bg:'#FDF2F8', border:'#FBCFE8',
+  name:'数字公关 / Digital PR for AI', nameEn:'Digital PR & Brand Authority for AI Citations',
+  desc:'通过在高权威媒体（Forbes、TechCrunch、Wikipedia等）获取品牌提及，让AI引擎在引用时"认识"你的品牌，是GEO效果建设的外部链路。',
+  tech:'HARO · Prowly · BuzzStream · OmniSEO',
+  stage:'growing', stageLabel:'成长市场',
+  insight:'「digital pr agency」(2.9K/KD39/$17.39)是<strong>全报告CPC最高的类别之一</strong>，反映B2B服务市场极强的付费意愿。在GEO语境下，digital PR的价值从"获取backlink"升级为"出现在AI模型高度参考的权威来源中"。低竞争机会词：「pr seo」(KD23)、「pr link building」(KD17)、「digital pr seo」(KD23)——竞争极低但商业意图明确。「brand mentions seo」(KD29)是新兴词，精准连接GEO用户需求。',
+  kws:[
+    ['digital pr',4400,50,10.86,'tool'],
+    ['link building seo',2900,85,11.29,'tool'],
+    ['digital pr agency',2900,39,17.39,'commercial'],
+    ['pr seo',1600,23,6.93,'tool'],
+    ['digital pr seo',720,23,0.00,'tool'],
+    ['haro seo',480,61,4.03,'tool'],
+    ['brand mentions seo',390,29,9.29,'tool'],
+    ['pr link building',390,17,0.00,'tool'],
+    ['brand mentions tracker',50,43,12.97,'tool'],
+    ['unlinked mentions seo',40,23,0.00,'tool'],
+    ['digital pr tool',30,0,0.00,'tool'],
+    ['earned media seo',20,0,0.00,'tool'],
+  ]
+},
+{
+  id:'f10', nav:'AI SEO Agent', emoji:'🤖', color:'#F97316', bg:'#FFF7ED', border:'#FED7AA',
+  name:'AI SEO Agent / AI驱动SEO工具', nameEn:'AI SEO Agent & Automation',
+  desc:'以AI Agent方式自动执行SEO任务（内容生成、关键词分析、优化建议、GEO优化等），是SEO工作流自动化的下一代形态。',
+  tech:'seo-geo-claude-skills · Surfer SEO AI · MarketMuse AI · RankMath AI',
+  stage:'growing', stageLabel:'成长市场',
+  insight:'「ai seo software」(1.6K/KD52/<strong>CPC $18.78</strong>)是全报告CPC最高的词，付费意愿爆表。「seo ai agent」(390/KD17/$10.97)是最佳机会词——KD仅17，精准触达想要自动化SEO的高价值用户。「seo copilot」(KD23)是另一低竞争切入词。<strong>关键认知：</strong>「geo agent」月搜索仅20，市场还没有这个概念——产品定位要用"ai seo agent/tool"，不要用"geo agent"。「autonomous seo」和「seo agent tool」搜索量为零，避免使用这些词作为主关键词。',
+  kws:[
+    ['ai seo software',1600,52,18.78,'tool'],
+    ['ai seo tool',720,55,12.73,'tool'],
+    ['ai powered seo',390,56,13.68,'tool'],
+    ['seo ai agent',390,17,10.97,'tool'],
+    ['seo automation tool',260,47,6.23,'tool'],
+    ['ai seo agent',210,29,5.00,'tool'],
+    ['seo ai tool',170,38,11.27,'tool'],
+    ['seo copilot',170,23,5.71,'tool'],
+    ['ai agent seo',110,25,9.40,'tool'],
+    ['ai seo automation',50,39,0.00,'tool'],
+    ['automated seo tool',30,0,12.49,'tool'],
+    ['ai seo assistant',20,0,9.49,'tool'],
+    ['geo agent',20,0,4.12,'tool'],
   ]
 }
 ];
@@ -453,7 +563,7 @@ function buildOverview(){
   allGems.sort((a,b)=>b.score-a.score);
 
   document.getElementById('overview-stats').innerHTML=`
-    <div class="card"><div class="card-label">总关键词数</div><div class="card-value">${totalKws}</div><div class="card-sub">8大功能分类</div></div>
+    <div class="card"><div class="card-label">总关键词数</div><div class="card-value">${totalKws}</div><div class="card-sub">10大功能分类</div></div>
     <div class="card"><div class="card-label">总月搜索量</div><div class="card-value">${fmtVol(totalVol)}</div><div class="card-sub">US市场</div></div>
     <div class="card"><div class="card-label">平均KD难度</div><div class="card-value">${avgKD}</div><div class="card-sub">0=易 100=难</div></div>
     <div class="card"><div class="card-label">机会词数量</div><div class="card-value">${allGems.length}</div><div class="card-sub">KD≤45 量≥50</div></div>
@@ -495,7 +605,7 @@ function buildOverview(){
   const bubbleData=FEATURES.map(f=>{
     const vol=f.kws.reduce((s,k)=>s+k[1],0);
     const kd=Math.round(f.kws.reduce((s,k)=>s+k[2],0)/f.kws.length);
-    return {x:kd,y:vol,r:Math.max(8,Math.min(30,vol/1500))};
+    return {x:kd,y:vol,r:Math.max(7,Math.min(28,vol/1500))};
   });
   new Chart(document.getElementById('chart-overview-bubble'),{
     type:'bubble',
@@ -691,7 +801,7 @@ function copyKeywords(fid){
   });
 }
 
-const VALID_IDS=['overview','f1','f2','f3','f4','f5','f6','f7','f8'];
+const VALID_IDS=['overview','f1','f2','f3','f4','f5','f6','f7','f8','f9','f10'];
 
 function showSection(id,tabEl){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
