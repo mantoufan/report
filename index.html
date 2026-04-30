@@ -1058,7 +1058,8 @@ function showSection(id, tabEl){
     const navWidth=navTabs.clientWidth;
     navTabs.scrollTo({left:tabLeft-navWidth/2+tabWidth/2,behavior:'smooth'});
   }
-  if(location.hash!=='#'+id) location.hash=id;
+  if(id==='overview'){if(location.hash) history.pushState(null,'',location.pathname);}
+  else if(location.hash!=='#'+id) location.hash=id;
   document.querySelector('.nav-back').style.display=id==='overview'?'none':'flex';
   if(id==='overview') window.scrollTo({top:overviewScrollY});
   else window.scrollTo({top:0,behavior:'smooth'});
