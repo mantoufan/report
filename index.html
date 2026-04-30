@@ -75,6 +75,7 @@ tr:last-child td{border-bottom:none}
 .intent-howto{background:#F0FDF4;color:#10B981}
 .intent-brand{background:#F5F3FF;color:#8B5CF6}
 .intent-commercial{background:#FFFBEB;color:#F59E0B}
+.intent-informational{background:#F3F4F6;color:#6B7280}
 
 /* OPPORTUNITY SCORE */
 .opp{font-weight:600}
@@ -194,7 +195,9 @@ footer{text-align:center;padding:24px 16px;color:#9CA3AF;font-size:12px;border-t
   .hero h1{font-size:22px}
   .cards{grid-template-columns:1fr 1fr}
   .feat-header{flex-direction:column}
+  .feat-cards{grid-template-columns:1fr}
 }
+@media(max-width:480px){.search-input{min-width:100%;flex:none}}
 </style>
 </head>
 <body>
@@ -734,7 +737,7 @@ function oppClass(score){
 }
 function intentBadge(t){
   const map={tool:'tool 工具',howto:'how-to 教程',brand:'品牌词',commercial:'商业词',informational:'信息词'};
-  const cls={tool:'intent-tool',howto:'intent-howto',brand:'intent-brand',commercial:'intent-commercial',informational:'intent-brand'};
+  const cls={tool:'intent-tool',howto:'intent-howto',brand:'intent-brand',commercial:'intent-commercial',informational:'intent-informational'};
   return `<span class="intent ${cls[t]||'intent-tool'}">${map[t]||t}</span>`;
 }
 
@@ -1021,11 +1024,13 @@ function sortTable(tableId, col){
 function copyKeywords(fid){
   const f=FEATURES.find(x=>x.id===fid);
   if(!f) return;
-  const text=f.kws.map(k=>k[0]).join('\n');
-  navigator.clipboard.writeText(text).then(()=>{
-    const btn=document.querySelector(`#section-${fid} .btn-copy`);
-    const orig=btn.textContent;
+  const btn=document.querySelector(`#section-${fid} .btn-copy`);
+  const orig=btn.textContent;
+  navigator.clipboard.writeText(f.kws.map(k=>k[0]).join('\n')).then(()=>{
     btn.textContent='✅ 已复制！';
+    setTimeout(()=>btn.textContent=orig,2000);
+  }).catch(()=>{
+    btn.textContent='❌ 复制失败';
     setTimeout(()=>btn.textContent=orig,2000);
   });
 }

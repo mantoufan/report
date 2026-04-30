@@ -55,6 +55,7 @@ tr:last-child td{border-bottom:none}
 .intent-howto{background:#F0FDF4;color:#10B981}
 .intent-brand{background:#F5F3FF;color:#8B5CF6}
 .intent-commercial{background:#FFFBEB;color:#F59E0B}
+.intent-informational{background:#F3F4F6;color:#6B7280}
 .opp{font-weight:600}
 .opp-high{color:#10B981}
 .opp-med{color:#F59E0B}
@@ -139,7 +140,8 @@ tr:last-child td{border-bottom:none}
 .note-def{color:#374151;padding:3px 0;line-height:1.55}
 .note-caption{font-size:12px;color:#6B7280;margin-top:12px;line-height:1.65;padding-top:10px;border-top:1px dashed}
 footer{text-align:center;padding:24px 16px;color:#9CA3AF;font-size:12px;border-top:1px solid #F3F4F6;background:#fff;margin-top:32px}
-@media(max-width:600px){.hero h1{font-size:22px}.cards{grid-template-columns:1fr 1fr}.feat-header{flex-direction:column}}
+@media(max-width:600px){.hero h1{font-size:22px}.cards{grid-template-columns:1fr 1fr}.feat-header{flex-direction:column}.feat-cards{grid-template-columns:1fr}}
+@media(max-width:480px){.search-input{min-width:100%;flex:none}}
 </style>
 </head>
 <body>
@@ -170,7 +172,7 @@ footer{text-align:center;padding:24px 16px;color:#9CA3AF;font-size:12px;border-t
     <span class="badge">📅 2026年</span>
     <span class="badge">🔍 数据库 US</span>
     <span class="badge">📊 Semrush</span>
-    <span class="badge">🔑 关键词覆盖 100+</span>
+    <span class="badge">🔑 关键词覆盖 115+</span>
     <span class="badge">🌎 北美市场</span>
   </div>
 </div>
@@ -371,7 +373,7 @@ const FEATURES = [
   desc:'监控品牌在ChatGPT、Perplexity、Claude等AI引擎中的被提及和引用情况，是GEO效果评估的核心工具。',
   tech:'firegeo · Profound · Brandwatch · Mentionlytics',
   stage:'new', stageLabel:'新兴市场',
-  insight:'<strong>最大蓝海！</strong>整类KD极低（19-22），「chatgpt brand monitoring」(KD22)、「ai citation tracking」(KD20)、「llm brand monitoring」(KD20)几乎零SEO竞争。市场处于用户教育早期，AI品牌可见度的概念正在营销圈扩散。先布局者可以零成本建立品类权威，等市场认知形成后直接收割。firegeo已经在这一赛道直接参与，时机极佳。',
+  insight:'<strong>最大蓝海！</strong>整类KD极低（19-38），「chatgpt brand monitoring」(KD22)、「ai citation tracking」(KD20)、「llm brand monitoring」(KD20)几乎零SEO竞争。「brand monitoring tools」(880/KD32/$24.26)和「brand tracking software」(720/KD24/$19.12)是传统品牌监控词，CPC超高验证强付费意愿——AI品牌监控可借助这些词的搜索需求作为流量入口。<strong>最大机会</strong>：「ai visibility tool」(2.4K/KD38)和「llm visibility tool」(1K/KD38)——AI可见度追踪是市场刚刚形成认知的新词，KD尚低。先布局者可以零成本建立品类权威，等市场认知形成后直接收割。firegeo已经在这一赛道直接参与，时机极佳。',
   kws:[
     ['ai brand monitoring',390,46,11.34,'tool'],
     ['brand visibility ai',260,50,0.00,'informational'],
@@ -380,6 +382,16 @@ const FEATURES = [
     ['ai answer monitoring',70,19,0.00,'tool'],
     ['brand ai visibility',40,62,0.00,'tool'],
     ['llm brand monitoring',40,20,5.86,'tool'],
+    ['brand monitoring tools',880,32,24.26,'tool'],
+    ['brand tracking software',720,24,19.12,'tool'],
+    ['brand tracking tools',590,27,24.73,'tool'],
+    ['ai visibility tool',2400,38,15.83,'tool'],
+    ['ai brand visibility tool',1300,34,9.45,'tool'],
+    ['llm visibility tool',1000,38,9.79,'tool'],
+    ['online brand monitoring',880,27,0.00,'tool'],
+    ['ai search visibility tool',1300,79,23.00,'tool'],
+    ['rank tracking tool llm',880,2,0.00,'tool'],
+    ['ai brand visibility tracker',590,37,0.00,'tool'],
   ]
 },
 {
@@ -521,8 +533,6 @@ const FEATURES = [
     ['pr link building',390,17,0.00,'tool'],
     ['brand mentions tracker',50,43,12.97,'tool'],
     ['unlinked mentions seo',40,23,0.00,'tool'],
-    ['digital pr tool',30,0,0.00,'tool'],
-    ['earned media seo',20,0,0.00,'tool'],
   ]
 },
 {
@@ -543,8 +553,6 @@ const FEATURES = [
     ['seo copilot',170,23,5.71,'tool'],
     ['ai agent seo',110,25,9.40,'tool'],
     ['ai seo automation',50,39,0.00,'tool'],
-    ['automated seo tool',30,0,12.49,'tool'],
-    ['ai seo assistant',20,0,9.49,'tool'],
     ['geo agent',20,0,4.12,'tool'],
   ]
 }
@@ -569,7 +577,7 @@ function oppClass(score){
 }
 function intentBadge(t){
   const map={tool:'tool 工具',howto:'how-to 教程',brand:'品牌词',commercial:'商业词',informational:'信息词'};
-  const cls={tool:'intent-tool',howto:'intent-howto',brand:'intent-brand',commercial:'intent-commercial',informational:'intent-brand'};
+  const cls={tool:'intent-tool',howto:'intent-howto',brand:'intent-brand',commercial:'intent-commercial',informational:'intent-informational'};
   return `<span class="intent ${cls[t]||'intent-tool'}">${map[t]||t}</span>`;
 }
 
@@ -727,7 +735,7 @@ function buildFeatureSections(){
 </div>`);
     renderFeatureTable(f);
   });
-  setTimeout(()=>{FEATURES.forEach(buildFeatureCharts);},50);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{FEATURES.forEach(buildFeatureCharts);}));
 }
 
 function renderFeatureTable(f,filterText='',filterIntent=''){
@@ -818,10 +826,13 @@ function sortTable(tableId,col){
 function copyKeywords(fid){
   const f=FEATURES.find(x=>x.id===fid);
   if(!f) return;
+  const btn=document.querySelector(`#section-${fid} .btn-copy`);
+  const orig=btn.textContent;
   navigator.clipboard.writeText(f.kws.map(k=>k[0]).join('\n')).then(()=>{
-    const btn=document.querySelector(`#section-${fid} .btn-copy`);
-    const orig=btn.textContent;
     btn.textContent='✅ 已复制！';
+    setTimeout(()=>btn.textContent=orig,2000);
+  }).catch(()=>{
+    btn.textContent='❌ 复制失败';
     setTimeout(()=>btn.textContent=orig,2000);
   });
 }
