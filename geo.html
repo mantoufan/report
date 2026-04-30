@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<title>GEO工具 SEO关键词调研报告 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#F8F9FB;color:#1F2937;font-size:14px}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #E5E7EB;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-back{flex-shrink:0;padding:0 16px;height:44px;display:flex;align-items:center;gap:4px;font-size:13px;font-weight:600;color:#6B7280;cursor:pointer;border-right:1px solid #E5E7EB;white-space:nowrap;transition:color .2s;background:none}
+.nav-back:hover{color:#374151}
+.nav-tabs{display:flex;align-items:center;gap:4px;padding:0 8px}
+.nav-tab{flex-shrink:0;padding:12px 14px;font-size:13px;font-weight:500;color:#6B7280;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all .2s}
+.nav-tab:hover{color:#374151}
+.nav-tab.active{color:#6366F1;border-bottom-color:#6366F1}
+.hero{background:linear-gradient(135deg,#EEF2FF 0%,#F0F9FF 50%,#ECFDF5 100%);padding:48px 16px 32px;text-align:center}
+.hero h1{font-size:28px;font-weight:700;color:#111827;margin-bottom:8px}
+.hero p{color:#6B7280;font-size:15px;margin-bottom:24px}
+.hero-meta{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;gap:4px;background:#fff;border:1px solid #E5E7EB;border-radius:20px;padding:4px 12px;font-size:12px;color:#6B7280}
+.container{max-width:1280px;margin:0 auto;padding:24px 16px}
+.section{display:none}
+.section.active{display:block}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+.card{background:#fff;border-radius:12px;padding:20px;border:1px solid #F3F4F6;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.card-label{font-size:12px;color:#9CA3AF;font-weight:500;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.card-value{font-size:26px;font-weight:700;color:#111827}
+.card-sub{font-size:12px;color:#9CA3AF;margin-top:2px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+@media(max-width:768px){.grid2{grid-template-columns:1fr}}
+.panel{background:#fff;border-radius:12px;padding:20px;border:1px solid #F3F4F6;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.panel-title{font-size:14px;font-weight:600;color:#374151;margin-bottom:16px}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:8px 10px;color:#6B7280;font-weight:600;border-bottom:2px solid #F3F4F6;cursor:pointer;white-space:nowrap;user-select:none}
+th:hover{color:#374151}
+th .sort-icon{margin-left:4px;opacity:.4}
+th.sorted .sort-icon{opacity:1}
+td{padding:8px 10px;border-bottom:1px solid #F9FAFB;vertical-align:middle}
+tr:hover td{background:#FAFAFA}
+tr:last-child td{border-bottom:none}
+.kd-bar{display:flex;align-items:center;gap:6px}
+.kd-track{height:6px;width:60px;background:#F3F4F6;border-radius:3px;flex-shrink:0}
+.kd-fill{height:100%;border-radius:3px}
+.kd-num{font-size:12px;color:#6B7280;min-width:24px}
+.vol{font-weight:600;color:#111827}
+.intent{font-size:11px;padding:2px 7px;border-radius:10px;font-weight:500}
+.intent-tool{background:#EFF6FF;color:#3B82F6}
+.intent-howto{background:#F0FDF4;color:#10B981}
+.intent-brand{background:#F5F3FF;color:#8B5CF6}
+.intent-commercial{background:#FFFBEB;color:#F59E0B}
+.opp{font-weight:600}
+.opp-high{color:#10B981}
+.opp-med{color:#F59E0B}
+.opp-low{color:#9CA3AF}
+.gems{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.gem{background:linear-gradient(135deg,#EEF2FF,#F0F9FF);border:1px solid #C7D2FE;border-radius:10px;padding:12px 16px;min-width:180px}
+.gem-kw{font-weight:700;font-size:13px;color:#111827;margin-bottom:4px}
+.gem-stats{display:flex;gap:8px;font-size:12px;color:#6B7280}
+.gem-stats span{font-weight:600;color:#374151}
+.feat-header{background:#fff;border-radius:12px;padding:20px;margin-bottom:20px;border:1px solid #F3F4F6;display:flex;align-items:flex-start;gap:16px}
+.feat-icon{font-size:36px;flex-shrink:0}
+.feat-title{font-size:20px;font-weight:700;color:#111827;margin-bottom:4px}
+.feat-desc{color:#6B7280;font-size:13px;margin-bottom:8px}
+.feat-meta{display:flex;gap:8px;flex-wrap:wrap}
+.feat-badge{font-size:11px;padding:3px 8px;border-radius:6px;font-weight:600}
+.stage-mature{background:#D1FAE5;color:#065F46}
+.stage-growing{background:#DBEAFE;color:#1E40AF}
+.stage-new{background:#FCE7F3;color:#9D174D}
+.tech-badge{background:#F3F4F6;color:#6B7280;font-size:11px;padding:3px 8px;border-radius:6px}
+.insight{background:linear-gradient(135deg,#EEF2FF,#F0F9FF);border-left:3px solid #6366F1;border-radius:0 8px 8px 0;padding:12px 16px;margin:16px 0;font-size:13px;color:#374151;line-height:1.6}
+.insight strong{color:#111827}
+.chart-wrap{position:relative;height:280px}
+.search-bar{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.search-input{flex:1;min-width:200px;padding:7px 12px;border:1px solid #E5E7EB;border-radius:8px;font-size:13px;outline:none;background:#fff}
+.search-input:focus{border-color:#C7D2FE}
+.filter-select{padding:7px 10px;border:1px solid #E5E7EB;border-radius:8px;font-size:13px;outline:none;background:#fff;cursor:pointer}
+.btn{padding:7px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+.btn-copy{background:#F3F4F6;color:#374151}
+.btn-copy:hover{background:#E5E7EB}
+.feat-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-bottom:24px}
+.feat-card{background:#fff;border-radius:10px;padding:14px 16px;border:1px solid #F3F4F6;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:12px}
+.feat-card:hover{border-color:#C7D2FE;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.feat-card-icon{font-size:24px;flex-shrink:0}
+.feat-card-name{font-weight:700;font-size:13px;color:#111827}
+.feat-card-en{font-size:11px;color:#9CA3AF}
+.feat-card-vol{font-size:16px;font-weight:700;margin-top:2px}
+.feat-card-kd{font-size:11px;color:#9CA3AF;margin-top:1px}
+.concl-header{margin-bottom:28px}
+.concl-eyebrow{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#6366F1;margin-bottom:8px}
+.concl-h2{font-size:22px;font-weight:800;color:#111827;margin-bottom:8px;letter-spacing:-.3px}
+.concl-lead{font-size:14px;color:#6B7280;line-height:1.7}
+.mid-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px;margin-bottom:28px}
+.mid-card{background:#fff;border:1px solid #F3F4F6;border-radius:10px;padding:14px 16px;cursor:pointer}
+.mid-card-name{font-size:13px;font-weight:700;color:#111827;margin-bottom:6px}
+.mid-card-why{font-size:12px;color:#6B7280;line-height:1.65;margin-bottom:8px}
+.skip-items{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px;margin-bottom:24px}
+.skip-item{background:#fff;border:1px solid #F3F4F6;border-radius:10px;padding:14px 16px;cursor:pointer;transition:background .15s}
+.skip-item:hover{background:#F3F4F6}
+.skip-item-name{display:block;font-size:13px;font-weight:700;color:#111827;margin-bottom:6px}
+.skip-item-why{display:block;font-size:12px;color:#6B7280;line-height:1.65;margin-bottom:8px}
+.section-divider{font-size:14px;font-weight:700;color:#374151;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.section-divider::after{content:'';flex:1;height:1px;background:#F3F4F6}
+.concl-closing{font-size:13px;color:#374151;line-height:1.85;padding:16px 20px;background:linear-gradient(135deg,#EEF2FF 0%,#F0F9FF 50%,#ECFDF5 100%);border-radius:10px;border-left:3px solid #6366F1}
+.concl-closing strong{color:#111827}
+.dpills{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.dpill{display:inline-flex;align-items:center;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px}
+.dp-vol{background:#EFF6FF;color:#1D4ED8}
+.dp-kd-low{background:#D1FAE5;color:#065F46}
+.dp-kd-mid{background:#FEF3C7;color:#92400E}
+.dp-kd-high{background:#FEE2E2;color:#991B1B}
+.dp-cpc{background:#F5F3FF;color:#5B21B6}
+.dp-neu{background:#F3F4F6;color:#6B7280}
+.tip-icon{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border-radius:50%;background:#E5E7EB;color:#9CA3AF;font-size:9px;font-weight:700;cursor:help;position:relative;margin-left:4px;vertical-align:middle;flex-shrink:0}
+.tip-icon::after{content:attr(data-tip);position:absolute;left:50%;transform:translateX(-50%);top:calc(100% + 7px);background:#1F2937;color:#fff;font-size:11px;font-weight:400;line-height:1.6;padding:7px 11px;border-radius:7px;white-space:normal;width:200px;z-index:9999;pointer-events:none;opacity:0;transition:opacity .15s}
+.tip-icon::before{content:'';position:absolute;left:50%;transform:translateX(-50%);top:calc(100% + 3px);border:4px solid transparent;border-bottom-color:#1F2937;z-index:9999;pointer-events:none;opacity:0;transition:opacity .15s}
+.tip-icon:hover::after,.tip-icon:hover::before{opacity:1}
+footer{text-align:center;padding:24px 16px;color:#9CA3AF;font-size:12px;border-top:1px solid #F3F4F6;background:#fff;margin-top:32px}
+@media(max-width:600px){.hero h1{font-size:22px}.cards{grid-template-columns:1fr 1fr}.feat-header{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-back" onclick="history.back()">← 返回</div>
+    <div class="nav-tabs">
+      <div class="nav-tab active" onclick="showSection('overview',this)">📊 总览</div>
+      <div class="nav-tab" onclick="showSection('f1',this)">🤖 GEO核心</div>
+      <div class="nav-tab" onclick="showSection('f2',this)">💬 AEO答案引擎</div>
+      <div class="nav-tab" onclick="showSection('f3',this)">👁️ AI品牌监控</div>
+      <div class="nav-tab" onclick="showSection('f4',this)">✍️ AI内容优化</div>
+      <div class="nav-tab" onclick="showSection('f5',this)">🏷️ 结构化数据</div>
+      <div class="nav-tab" onclick="showSection('f6',this)">📈 AI排名追踪</div>
+      <div class="nav-tab" onclick="showSection('f7',this)">🔍 SEO审计</div>
+      <div class="nav-tab" onclick="showSection('f8',this)">🔑 关键词研究</div>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>GEO工具 SEO关键词调研报告</h1>
+  <p>8大功能分类 · 覆盖生成引擎优化全链路 · 数据来源 Semrush</p>
+  <div class="hero-meta">
+    <span class="badge">📅 2026年</span>
+    <span class="badge">🔍 数据库 US</span>
+    <span class="badge">📊 Semrush</span>
+    <span class="badge">🔑 关键词覆盖 71+</span>
+    <span class="badge">🌎 北美市场</span>
+  </div>
+</div>
+
+<div id="section-overview" class="section active">
+<div class="container">
+
+  <div class="cards" id="overview-stats"></div>
+  <div class="feat-cards" id="feat-cards-grid"></div>
+
+  <div class="grid2">
+    <div class="panel">
+      <div class="panel-title">各功能关键词总搜索量对比</div>
+      <div class="chart-wrap"><canvas id="chart-overview-vol"></canvas></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">竞争难度分布 (平均KD vs 总量)</div>
+      <div class="chart-wrap"><canvas id="chart-overview-bubble"></canvas></div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-bottom:24px">
+    <div class="panel-title">🏆 全局机会词 TOP 20（低难度 可观流量）</div>
+    <div class="tbl-wrap">
+      <table id="table-global-gems">
+        <thead><tr>
+          <th onclick="sortTable('table-global-gems',0)">关键词 <span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('table-global-gems',1)">所属功能</th>
+          <th onclick="sortTable('table-global-gems',2)">月搜索量 <span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('table-global-gems',3)">KD <span class="tip-icon" data-tip="竞争难度 0–100，越高表示在 Google 排名越难">?</span><span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('table-global-gems',4)">CPC <span class="tip-icon" data-tip="每次点击费用，反映广告主出价水平和商业价值">?</span><span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('table-global-gems',5)">机会分 <span class="tip-icon" data-tip="机会分 = 月搜索量 × (100 − KD) / 1000，越高越优质">?</span><span class="sort-icon">↕</span></th>
+        </tr></thead>
+        <tbody id="global-gems-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:8px">
+    <div class="concl-header">
+      <div class="concl-eyebrow">产品决策参考</div>
+      <h2 class="concl-h2">哪个方向值得做</h2>
+      <p class="concl-lead">GEO（生成引擎优化）是正在成形的新赛道。从搜索数据看，各细分方向的市场机会差距悬殊——有些处于蓝海期，有些已被巨头锁死。</p>
+    </div>
+
+    <div class="section-divider">优先投入</div>
+    <div class="mid-cards">
+      <div class="mid-card" onclick="showSection('f2',null)">
+        <div class="mid-card-name">💬 AEO / 答案引擎优化</div>
+        <div class="mid-card-why">「aeo seo」月搜索4.4K、KD仅43，是整个报告量价比最优的词。「answer engine optimization」2.9K/KD41同步增长。AI答案引擎快速普及，工具侧供给严重不足，现在入场成本最低。「ai answer optimization」CPC高达$19.59，付费意愿极强。</div>
+        <div class="dpills"><span class="dpill dp-vol">aeo seo 4.4K</span><span class="dpill dp-vol">answer engine opt. 2.9K</span><span class="dpill dp-kd-mid">均KD 33</span><span class="dpill dp-cpc">ai answer CPC $19.59</span></div>
+      </div>
+      <div class="mid-card" onclick="showSection('f3',null)">
+        <div class="mid-card-name">👁️ AI品牌监控</div>
+        <div class="mid-card-why">整类KD极低（19-22）——chatgpt brand monitoring、ai citation tracking、llm brand monitoring几乎零SEO竞争。市场处于教育早期，先布局者可以零成本建立品类权威。firegeo正在这一赛道直接参与，方向明确。</div>
+        <div class="dpills"><span class="dpill dp-kd-low">chatgpt监控 KD22</span><span class="dpill dp-kd-low">ai citation KD20</span><span class="dpill dp-kd-low">llm监控 KD20</span><span class="dpill dp-cpc">CPC $5–11</span></div>
+      </div>
+      <div class="mid-card" onclick="showSection('f1',null)">
+        <div class="mid-card-name">🤖 GEO核心 / LLM SEO</div>
+        <div class="mid-card-why">「generative engine optimization」已有5.4K搜索，「ai seo」达8.1K。真正的机会在低竞争AI原生词：「llm seo」(KD34, $8.01)、「llm optimization」(KD27, $5.88)——高CPC、低难度，现在布局成本最低。</div>
+        <div class="dpills"><span class="dpill dp-vol">ai seo 8.1K</span><span class="dpill dp-vol">GEO 5.4K</span><span class="dpill dp-kd-low">llm seo KD34</span><span class="dpill dp-kd-low">llm opt. KD27</span><span class="dpill dp-cpc">均CPC $8+</span></div>
+      </div>
+    </div>
+
+    <div class="section-divider">也可以做，优先级低一些</div>
+    <div class="mid-cards">
+      <div class="mid-card" onclick="showSection('f4',null)">
+        <div class="mid-card-name">✍️ AI内容优化</div>
+        <div class="mid-card-why">「ai content optimization」(880/KD35/$8.85)是稳定入口。「geo content strategy」(KD11)是全报告KD最低的有意义词。更适合作为主产品内容矩阵配套，而非独立立项。</div>
+        <div class="dpills"><span class="dpill dp-vol">ai content opt. 880</span><span class="dpill dp-kd-low">均KD 35</span><span class="dpill dp-cpc">CPC $8.85</span></div>
+      </div>
+      <div class="mid-card" onclick="showSection('f6',null)">
+        <div class="mid-card-name">📈 AI排名追踪</div>
+        <div class="mid-card-why">传统rank tracker词量大但竞争高（KD53-72）；AI专属词「ai rank tracker」(KD34)、「llm rank tracker」(KD24)量小竞争极低。CPC极高（$8-16）验证商业价值，需配合市场教育。</div>
+        <div class="dpills"><span class="dpill dp-kd-low">llm rank tracker KD24</span><span class="dpill dp-kd-low">ai rank tracker KD34</span><span class="dpill dp-cpc">rank tracking CPC $16.92</span></div>
+      </div>
+    </div>
+
+    <div class="section-divider">这几个，不建议单独立项</div>
+    <div class="skip-items">
+      <div class="skip-item" onclick="showSection('f7',null)">
+        <span class="skip-item-name">🔍 SEO审计工具</span>
+        <span class="skip-item-why">Ahrefs、SEMrush、Screaming Frog长期占领，主力词KD在65-89。除非专门针对AI搜索做出差异化，否则无法突破。</span>
+        <div class="dpills"><span class="dpill dp-vol">seo checker 14.8K</span><span class="dpill dp-kd-high">主力词 KD65-89</span><span class="dpill dp-neu">巨头主导</span></div>
+      </div>
+      <div class="skip-item" onclick="showSection('f8',null)">
+        <span class="skip-item-name">🔑 关键词研究工具</span>
+        <span class="skip-item-why">绝对红海，KD 41-100，「keyword tool」和「keyword finder」均满分100。几乎没有SEO可攻空间，唯一机会是长尾词（KD41-46）但体量有限。</span>
+        <div class="dpills"><span class="dpill dp-vol">keyword planner 12.1K</span><span class="dpill dp-kd-high">主力词 KD91-100</span><span class="dpill dp-neu">完全红海</span></div>
+      </div>
+      <div class="skip-item" onclick="showSection('f5',null)">
+        <span class="skip-item-name">🏷️ 结构化数据生成</span>
+        <span class="skip-item-why">Google自带工具主导市场，独立工具差异化难度高。「schema markup tool」KD高达80，低竞争入口词量过小，不够支撑独立产品。</span>
+        <div class="dpills"><span class="dpill dp-vol">structured data seo 2.9K</span><span class="dpill dp-kd-high">schema tool KD80</span><span class="dpill dp-neu">Google主导</span></div>
+      </div>
+    </div>
+
+    <p class="concl-closing">如果只能选一个，选<strong>AEO/答案引擎优化</strong>——搜索量最优、KD可攻、CPC验证商业价值，市场还在高速成长期。有资源做三个则加上<strong>AI品牌监控</strong>（firegeo已在做）和<strong>LLM SEO</strong>——三者用户高度重叠（都是想在AI时代提升品牌曝光的营销人），一套内容矩阵可以同时服务三个方向，资源效率最高。</p>
+  </div>
+
+</div>
+</div>
+
+<div id="feature-sections"></div>
+
+<footer>
+  数据来源：Semrush (US市场, 2026) · 仅供参考 · <strong>机会分</strong> = 月搜索量 × (100-KD) / 1000
+</footer>
+
+<script>
+const FEATURES = [
+{
+  id:'f1', nav:'GEO核心', emoji:'🤖', color:'#6366F1', bg:'#EEF2FF', border:'#C7D2FE',
+  name:'GEO / 生成引擎优化', nameEn:'Generative Engine Optimization',
+  desc:'为AI搜索引擎（ChatGPT、Perplexity、Claude等）优化内容可见度和引用率，是传统SEO在生成式AI时代的演进。',
+  tech:'Profound · Otterly.ai · Goodie.ai · seo-geo-claude-skills',
+  stage:'growing', stageLabel:'成长市场',
+  insight:'GEO是SEO的下一代演进。「generative engine optimization」(5.4K，KD79)已成气候但竞争也在加速。<strong>真正的机会在低竞争AI原生词</strong>：「llm seo」(KD34)、「llm optimization」(KD27)、「geo optimization」(KD40)——均具备高商业价值CPC（$6-11），SEO布局成本最低。高CPC（均$8+）证明付费意愿强烈，商业变现路径明确。',
+  kws:[
+    ['ai seo',8100,68,10.68,'tool'],
+    ['generative engine optimization',5400,79,8.28,'tool'],
+    ['ai search engine optimization',3600,60,10.68,'tool'],
+    ['geo seo',2400,48,6.09,'tool'],
+    ['ai search optimization',1900,50,11.41,'tool'],
+    ['llm seo',1300,34,8.01,'tool'],
+    ['ai visibility',1300,54,11.55,'tool'],
+    ['geo optimization',720,40,8.08,'tool'],
+    ['llm optimization',590,27,5.88,'tool'],
+    ['generative ai seo',390,64,7.87,'tool'],
+    ['ai search ranking',170,68,9.92,'tool'],
+    ['optimize for chatgpt',70,28,7.84,'howto'],
+    ['optimize for ai',10,0,9.23,'howto'],
+  ]
+},
+{
+  id:'f2', nav:'AEO答案引擎', emoji:'💬', color:'#0EA5E9', bg:'#F0F9FF', border:'#BAE6FD',
+  name:'AEO / 答案引擎优化', nameEn:'Answer Engine Optimization',
+  desc:'针对AI问答引擎（Perplexity、ChatGPT Search、SGE等）的内容优化，让品牌出现在AI生成的答案中。',
+  tech:'Perplexity · ChatGPT Search · Google SGE · Bing Copilot',
+  stage:'growing', stageLabel:'成长市场',
+  insight:'「aeo seo」月搜索4.4K，KD仅43——<strong>全报告量价比最优的词</strong>。「answer engine optimization」2.9K/KD41同步增长，布局窗口正在关闭。「ai answer optimization」CPC高达$19.59，在整个报告中排名第一，反映了极强的商业转化潜力。「featured snippet optimization」(KD31)和「position zero seo」(KD15)是AI答案出现前的低竞争内容入口。',
+  kws:[
+    ['aeo seo',4400,43,7.66,'tool'],
+    ['answer engine optimization',2900,41,6.99,'tool'],
+    ['featured snippet optimization',390,31,0.00,'tool'],
+    ['ai featured snippets',260,15,0.00,'informational'],
+    ['chatgpt seo optimization',140,58,8.31,'tool'],
+    ['answer engine',110,35,3.23,'informational'],
+    ['position zero seo',70,15,0.00,'howto'],
+    ['perplexity seo',70,27,6.03,'tool'],
+    ['ai answer optimization',50,28,19.59,'tool'],
+    ['optimize for perplexity',50,28,0.00,'howto'],
+  ]
+},
+{
+  id:'f3', nav:'AI品牌监控', emoji:'👁️', color:'#8B5CF6', bg:'#F5F3FF', border:'#DDD6FE',
+  name:'AI品牌监控 / AI引用追踪', nameEn:'AI Brand Monitoring & Citation Tracking',
+  desc:'监控品牌在ChatGPT、Perplexity、Claude等AI引擎中的被提及和引用情况，是GEO效果评估的核心工具。',
+  tech:'firegeo · Profound · Brandwatch · Mentionlytics',
+  stage:'new', stageLabel:'新兴市场',
+  insight:'<strong>最大蓝海！</strong>整类KD极低（19-22），「chatgpt brand monitoring」(KD22)、「ai citation tracking」(KD20)、「llm brand monitoring」(KD20)几乎零SEO竞争。市场处于用户教育早期，AI品牌可见度的概念正在营销圈扩散。先布局者可以零成本建立品类权威，等市场认知形成后直接收割。firegeo已经在这一赛道直接参与，时机极佳。',
+  kws:[
+    ['ai brand monitoring',390,46,11.34,'tool'],
+    ['brand visibility ai',260,50,0.00,'informational'],
+    ['chatgpt brand monitoring',170,22,0.00,'tool'],
+    ['ai citation tracking',170,20,2.73,'tool'],
+    ['ai answer monitoring',70,19,0.00,'tool'],
+    ['brand ai visibility',40,62,0.00,'tool'],
+    ['llm brand monitoring',40,20,5.86,'tool'],
+  ]
+},
+{
+  id:'f4', nav:'AI内容优化', emoji:'✍️', color:'#10B981', bg:'#ECFDF5', border:'#A7F3D0',
+  name:'AI内容优化', nameEn:'AI Content Optimization for GEO',
+  desc:'针对AI引擎优化内容结构、实体密度、引用可信度，让内容更容易被AI模型引用和推荐。',
+  tech:'Clearscope · Surfer SEO · MarketMuse · seo-geo-claude-skills',
+  stage:'growing', stageLabel:'成长市场',
+  insight:'「ai content optimization」(880/KD35/$8.85)是类别最佳入口词，竞争中等、价值明确。其他AI专属词搜索量极低但KD也极低——「geo content strategy」(KD11)是<strong>全报告KD最低的有意义词</strong>。该方向更适合作为主产品的内容矩阵配套，核心价值在于教育用户"如何为AI优化内容"。',
+  kws:[
+    ['ai content optimization',880,35,8.85,'tool'],
+    ['content optimization tool',320,50,7.58,'tool'],
+    ['seo content optimizer',90,40,10.72,'tool'],
+    ['ai writing seo',70,53,0.00,'tool'],
+    ['geo content strategy',30,11,4.76,'tool'],
+    ['ai optimized content',30,33,8.11,'informational'],
+    ['optimize content for ai',30,31,9.41,'howto'],
+  ]
+},
+{
+  id:'f5', nav:'结构化数据', emoji:'🏷️', color:'#F59E0B', bg:'#FFFBEB', border:'#FDE68A',
+  name:'结构化数据 / Schema Markup', nameEn:'Schema Markup & Structured Data',
+  desc:'为网页生成Schema.org结构化标记，帮助搜索引擎和AI更好地理解内容语义，是GEO技术优化的重要组成。',
+  tech:'Google Rich Results Test · Schema App · Merkle Schema Generator',
+  stage:'mature', stageLabel:'成熟市场',
+  insight:'「structured data seo」(2.9K，KD52)是类别入口词，但整体市场被Google自带工具主导，独立工具差异化难度高。<strong>低竞争机会在</strong>：「faq schema generator」(KD34)、「how to add schema markup」(KD34)——教程类内容可以低成本获取精准流量。Schema标记在GEO中有特殊价值（提高AI引用率），这是现有工具未覆盖的切入角度。',
+  kws:[
+    ['structured data seo',2900,52,2.70,'tool'],
+    ['schema markup generator',1300,49,4.80,'tool'],
+    ['faq schema generator',480,34,0.00,'tool'],
+    ['how to add schema markup',320,34,1.02,'howto'],
+    ['schema markup tool',210,80,0.00,'tool'],
+    ['structured data generator',170,64,4.79,'tool'],
+    ['rich snippets generator',90,54,0.00,'tool'],
+    ['schema org generator',90,42,0.00,'tool'],
+    ['json ld generator',70,58,0.00,'tool'],
+  ]
+},
+{
+  id:'f6', nav:'AI排名追踪', emoji:'📈', color:'#3B82F6', bg:'#EFF6FF', border:'#BFDBFE',
+  name:'AI排名追踪', nameEn:'AI Search Rank Tracking',
+  desc:'追踪品牌/关键词在AI搜索引擎（Perplexity、ChatGPT Search等）中的排名和引用位置，区别于传统Google排名追踪。',
+  tech:'Profound · SEMrush · Ahrefs · Moz Pro',
+  stage:'growing', stageLabel:'成长市场',
+  insight:'类别呈明显两极分化：传统rank tracker词量大（6.6K-1.3K）但竞争高（KD53-72）；AI专属词量小（260-110）但竞争极低——「ai rank tracker」(KD34)、「llm rank tracker」(KD24)。整体CPC极高（$8-16），<strong>付费意愿是整个报告中最强的类别之一</strong>，验证了这类工具的商业变现价值。AI原生词是真正的机会，但需要配合市场教育。',
+  kws:[
+    ['keyword rank tracker',6600,72,8.99,'tool'],
+    ['seo rank tracker',2900,56,13.20,'tool'],
+    ['rank tracking tool',1300,53,16.92,'tool'],
+    ['search ranking tracker',590,65,7.23,'tool'],
+    ['ai rank tracker',260,34,11.79,'tool'],
+    ['llm rank tracker',260,24,0.00,'tool'],
+    ['track ai rankings',110,50,0.00,'tool'],
+  ]
+},
+{
+  id:'f7', nav:'SEO审计', emoji:'🔍', color:'#EF4444', bg:'#FEF2F2', border:'#FECACA',
+  name:'SEO审计工具', nameEn:'SEO Audit & Technical SEO',
+  desc:'网站技术SEO检查、站内优化评分、页面速度分析，包括针对AI搜索的专项技术审计。',
+  tech:'Ahrefs · SEMrush · Screaming Frog · Google Search Console',
+  stage:'mature', stageLabel:'成熟市场',
+  insight:'这是竞争最激烈的类别之一。「seo checker」(14.8K/KD71)到「technical seo tool」(210/KD89)，几乎所有主力词都被Ahrefs、SEMrush、Screaming Frog长期占领。<strong>不建议从通用SEO审计切入</strong>——除非产品专门针对"AI搜索技术审计"这一空白子赛道（例如检测页面是否符合AI引用标准），否则无法突破已固化的竞争格局。',
+  kws:[
+    ['seo checker',14800,71,3.11,'tool'],
+    ['free seo audit',5400,82,6.23,'commercial'],
+    ['technical seo audit',5400,65,6.60,'tool'],
+    ['seo site audit',4400,74,7.20,'tool'],
+    ['seo audit tool',2900,57,8.46,'tool'],
+    ['website seo audit',2900,78,9.24,'tool'],
+    ['seo analysis tool',2400,80,7.76,'tool'],
+    ['site audit seo',720,60,7.20,'tool'],
+    ['technical seo tool',210,89,8.15,'tool'],
+  ]
+},
+{
+  id:'f8', nav:'关键词研究', emoji:'🔑', color:'#14B8A6', bg:'#F0FDFA', border:'#99F6E4',
+  name:'关键词研究工具', nameEn:'Keyword Research Tools',
+  desc:'发现和分析SEO/GEO关键词机会，包括搜索量、竞争难度、CPC评估，是SEO工作流的起点。',
+  tech:'SEMrush · Ahrefs · Google Keyword Planner · Ubersuggest',
+  stage:'mature', stageLabel:'成熟市场',
+  insight:'绝对红海，KD 41-100。「keyword tool」和「keyword finder」均达KD满分100，「keyword research tool」KD91，几乎没有可攻空间。<strong>唯一例外</strong>：「long tail keyword tool」(KD41)和「keyword difficulty tool」(KD46)——相对低竞争，可作为小切入口。注意「keyword planner」CPC高达$148是因为该词主要指Google官方产品，数据失真，不具参考价值。',
+  kws:[
+    ['keyword planner',12100,94,148.48,'brand'],
+    ['keyword research tool',8100,91,4.54,'tool'],
+    ['keyword tool',8100,100,2.82,'tool'],
+    ['seo keyword tool',2900,96,4.34,'tool'],
+    ['keyword finder',2400,100,3.03,'tool'],
+    ['keyword difficulty tool',1900,46,0.00,'tool'],
+    ['keyword research free',880,95,3.01,'commercial'],
+    ['find keywords for seo',880,96,4.32,'howto'],
+    ['long tail keyword tool',880,41,0.00,'tool'],
+  ]
+}
+];
+
+function fmtVol(n){
+  if(n>=10000) return (n/1000).toFixed(0)+'K';
+  if(n>=1000) return (n/1000).toFixed(1)+'K';
+  return n.toString();
+}
+function oppScore(vol,kd){return Math.round(vol*(100-kd)/1000);}
+function kdColor(kd){
+  if(kd<30) return '#10B981';
+  if(kd<50) return '#F59E0B';
+  if(kd<70) return '#F97316';
+  return '#EF4444';
+}
+function oppClass(score){
+  if(score>=500) return 'opp-high';
+  if(score>=100) return 'opp-med';
+  return 'opp-low';
+}
+function intentBadge(t){
+  const map={tool:'tool 工具',howto:'how-to 教程',brand:'品牌词',commercial:'商业词',informational:'信息词'};
+  const cls={tool:'intent-tool',howto:'intent-howto',brand:'intent-brand',commercial:'intent-commercial',informational:'intent-brand'};
+  return `<span class="intent ${cls[t]||'intent-tool'}">${map[t]||t}</span>`;
+}
+
+function buildOverview(){
+  let totalKws=0,totalVol=0,kdSum=0,kdCount=0;
+  const allGems=[];
+  FEATURES.forEach(f=>{
+    f.kws.forEach(k=>{
+      totalKws++;totalVol+=k[1];kdSum+=k[2];kdCount++;
+      const s=oppScore(k[1],k[2]);
+      if(k[2]<=45&&k[1]>=50) allGems.push({kw:k[0],vol:k[1],kd:k[2],cpc:k[3],feat:f.name,featEmoji:f.emoji,score:s});
+    });
+  });
+  const avgKD=Math.round(kdSum/kdCount);
+  allGems.sort((a,b)=>b.score-a.score);
+
+  document.getElementById('overview-stats').innerHTML=`
+    <div class="card"><div class="card-label">总关键词数</div><div class="card-value">${totalKws}</div><div class="card-sub">8大功能分类</div></div>
+    <div class="card"><div class="card-label">总月搜索量</div><div class="card-value">${fmtVol(totalVol)}</div><div class="card-sub">US市场</div></div>
+    <div class="card"><div class="card-label">平均KD难度</div><div class="card-value">${avgKD}</div><div class="card-sub">0=易 100=难</div></div>
+    <div class="card"><div class="card-label">机会词数量</div><div class="card-value">${allGems.length}</div><div class="card-sub">KD≤45 量≥50</div></div>
+  `;
+
+  document.getElementById('feat-cards-grid').innerHTML=FEATURES.map(f=>{
+    const vol=f.kws.reduce((s,k)=>s+k[1],0);
+    const avgKd=Math.round(f.kws.reduce((s,k)=>s+k[2],0)/f.kws.length);
+    return `<div class="feat-card" onclick="showSection('${f.id}',null)" style="border-left:3px solid ${f.color}">
+      <div class="feat-card-icon">${f.emoji}</div>
+      <div>
+        <div class="feat-card-name">${f.name}</div>
+        <div class="feat-card-en">${f.nameEn}</div>
+        <div class="feat-card-vol" style="color:${f.color}">${fmtVol(vol)}</div>
+        <div class="feat-card-kd">月搜索量 · 平均KD ${avgKd}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('global-gems-body').innerHTML=allGems.slice(0,20).map(g=>`<tr
+    data-kw="${g.kw}" data-vol="${g.vol}" data-kd="${g.kd}" data-cpc="${g.cpc}" data-score="${g.score}">
+    <td style="font-weight:600">${g.kw}</td>
+    <td><span style="color:#6B7280">${g.featEmoji} ${g.feat}</span></td>
+    <td class="vol">${fmtVol(g.vol)}</td>
+    <td><div class="kd-bar"><div class="kd-track"><div class="kd-fill" style="width:${g.kd}%;background:${kdColor(g.kd)}"></div></div><span class="kd-num">${g.kd}</span></div></td>
+    <td>$${g.cpc.toFixed(2)}</td>
+    <td class="opp ${oppClass(g.score)}">${g.score.toLocaleString()}</td>
+  </tr>`).join('');
+
+  const labels=FEATURES.map(f=>f.emoji+' '+f.nav);
+  const vols=FEATURES.map(f=>f.kws.reduce((s,k)=>s+k[1],0));
+  const colors=FEATURES.map(f=>f.color);
+  new Chart(document.getElementById('chart-overview-vol'),{
+    type:'bar',
+    data:{labels,datasets:[{data:vols,backgroundColor:colors.map(c=>c+'CC'),borderColor:colors,borderWidth:1.5,borderRadius:6}]},
+    options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>fmtVol(v)}}},responsive:true,maintainAspectRatio:false}
+  });
+
+  const bubbleData=FEATURES.map(f=>{
+    const vol=f.kws.reduce((s,k)=>s+k[1],0);
+    const kd=Math.round(f.kws.reduce((s,k)=>s+k[2],0)/f.kws.length);
+    return {x:kd,y:vol,r:Math.max(8,Math.min(30,vol/1500))};
+  });
+  new Chart(document.getElementById('chart-overview-bubble'),{
+    type:'bubble',
+    data:{datasets:FEATURES.map((f,i)=>({label:f.emoji+f.nav,data:[bubbleData[i]],backgroundColor:f.color+'99',borderColor:f.color,borderWidth:2}))},
+    options:{
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:(ctx)=>{
+        const f=FEATURES[ctx.datasetIndex];
+        return `${f.emoji}${f.nav}: 量${fmtVol(bubbleData[ctx.datasetIndex].y)}, KD${bubbleData[ctx.datasetIndex].x}`;
+      }}}},
+      scales:{x:{title:{display:true,text:'平均KD'},min:0,max:100},y:{title:{display:true,text:'总搜索量'},ticks:{callback:v=>fmtVol(v)}}},
+      responsive:true,maintainAspectRatio:false
+    }
+  });
+}
+
+function buildFeatureSections(){
+  const container=document.getElementById('feature-sections');
+  FEATURES.forEach(f=>{
+    const totalVol=f.kws.reduce((s,k)=>s+k[1],0);
+    const avgKd=Math.round(f.kws.reduce((s,k)=>s+k[2],0)/f.kws.length);
+    const avgCpc=(f.kws.reduce((s,k)=>s+k[3],0)/f.kws.length).toFixed(2);
+    const gems=f.kws.filter(k=>k[2]<=40&&k[1]>=30).sort((a,b)=>oppScore(b[1],b[2])-oppScore(a[1],a[2])).slice(0,3);
+    const stageClass={mature:'stage-mature',growing:'stage-growing',new:'stage-new'};
+
+    container.insertAdjacentHTML('beforeend',`
+<div id="section-${f.id}" class="section">
+<div class="container">
+  <div class="feat-header">
+    <div class="feat-icon">${f.emoji}</div>
+    <div style="flex:1">
+      <div class="feat-title">${f.name}</div>
+      <div class="feat-desc">${f.desc}</div>
+      <div class="feat-meta">
+        <span class="feat-badge ${stageClass[f.stage]||'stage-growing'}">${f.stageLabel}</span>
+        <span class="tech-badge">🔧 ${f.tech}</span>
+      </div>
+    </div>
+  </div>
+  <div class="cards">
+    <div class="card"><div class="card-label">关键词数</div><div class="card-value">${f.kws.length}</div></div>
+    <div class="card"><div class="card-label">总月搜索量</div><div class="card-value" style="color:${f.color}">${fmtVol(totalVol)}</div></div>
+    <div class="card"><div class="card-label">平均KD</div><div class="card-value">${avgKd}</div><div class="card-sub">难度0-100</div></div>
+    <div class="card"><div class="card-label">平均CPC</div><div class="card-value">$${avgCpc}</div></div>
+  </div>
+  ${gems.length?`<div style="margin-bottom:16px">
+    <div class="panel-title" style="margin-bottom:10px">💎 机会词（低竞争+可观流量）</div>
+    <div class="gems">${gems.map(k=>`<div class="gem" style="border-color:${f.border}">
+      <div class="gem-kw">${k[0]}</div>
+      <div class="gem-stats">量<span>${fmtVol(k[1])}</span> KD<span style="color:${kdColor(k[2])}">${k[2]}</span> 分<span style="color:#10B981">${oppScore(k[1],k[2])}</span></div>
+    </div>`).join('')}</div>
+  </div>`:''}
+  <div class="insight">💡 <strong>市场洞察：</strong>${f.insight}</div>
+  <div class="grid2" style="margin-top:20px">
+    <div class="panel">
+      <div class="panel-title">搜索量 Top 12</div>
+      <div class="chart-wrap"><canvas id="chart-${f.id}-bar"></canvas></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">难度 vs 搜索量（散点图）</div>
+      <div class="chart-wrap"><canvas id="chart-${f.id}-scatter"></canvas></div>
+    </div>
+  </div>
+  <div class="panel" style="margin-top:16px">
+    <div class="panel-title" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+      <span>关键词明细</span>
+      <button class="btn btn-copy" onclick="copyKeywords('${f.id}')">📋 复制全部关键词</button>
+    </div>
+    <div class="search-bar">
+      <input class="search-input" placeholder="搜索关键词..." oninput="filterTable('${f.id}',this.value,document.getElementById('intent-filter-${f.id}').value)">
+      <select class="filter-select" id="intent-filter-${f.id}" onchange="filterTable('${f.id}',document.querySelector('#section-${f.id} .search-input').value,this.value)">
+        <option value="">全部类型</option>
+        <option value="tool">工具词</option>
+        <option value="howto">教程词</option>
+        <option value="brand">品牌词</option>
+        <option value="commercial">商业词</option>
+        <option value="informational">信息词</option>
+      </select>
+    </div>
+    <div class="tbl-wrap">
+      <table id="table-${f.id}">
+        <thead><tr>
+          <th onclick="sortTable('table-${f.id}',0)">关键词 <span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('table-${f.id}',1)">月搜索量 <span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('table-${f.id}',2)">KD难度 <span class="tip-icon" data-tip="竞争难度 0–100，越高表示在 Google 排名越难">?</span><span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('table-${f.id}',3)">CPC <span class="tip-icon" data-tip="每次点击费用，反映广告主出价水平和商业价值">?</span><span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('table-${f.id}',4)">类型 <span class="sort-icon">↕</span></th>
+          <th onclick="sortTable('table-${f.id}',5)">机会分 <span class="tip-icon" data-tip="机会分 = 月搜索量 × (100 − KD) / 1000">?</span><span class="sort-icon">↕</span></th>
+        </tr></thead>
+        <tbody id="tbody-${f.id}"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>`);
+    renderFeatureTable(f);
+  });
+  setTimeout(()=>{FEATURES.forEach(buildFeatureCharts);},50);
+}
+
+function renderFeatureTable(f,filterText='',filterIntent=''){
+  const tbody=document.getElementById(`tbody-${f.id}`);
+  const rows=f.kws.filter(k=>{
+    const mt=!filterText||k[0].toLowerCase().includes(filterText.toLowerCase());
+    const mi=!filterIntent||k[4]===filterIntent;
+    return mt&&mi;
+  });
+  tbody.innerHTML=rows.map(k=>{
+    const s=oppScore(k[1],k[2]);
+    return `<tr data-kw="${k[0]}" data-vol="${k[1]}" data-kd="${k[2]}" data-cpc="${k[3]}" data-intent="${k[4]}" data-score="${s}">
+      <td style="font-weight:500">${k[0]}</td>
+      <td class="vol">${fmtVol(k[1])}</td>
+      <td><div class="kd-bar"><div class="kd-track"><div class="kd-fill" style="width:${k[2]}%;background:${kdColor(k[2])}"></div></div><span class="kd-num">${k[2]}</span></div></td>
+      <td>$${k[3].toFixed(2)}</td>
+      <td>${intentBadge(k[4])}</td>
+      <td class="opp ${oppClass(s)}">${s.toLocaleString()}</td>
+    </tr>`;
+  }).join('');
+}
+
+function filterTable(fid,text,intent){
+  const f=FEATURES.find(x=>x.id===fid);
+  if(f) renderFeatureTable(f,text,intent);
+}
+
+function buildFeatureCharts(f){
+  const sorted=[...f.kws].sort((a,b)=>b[1]-a[1]);
+  const top12=sorted.slice(0,12);
+  new Chart(document.getElementById(`chart-${f.id}-bar`),{
+    type:'bar',
+    data:{
+      labels:top12.map(k=>k[0].length>22?k[0].slice(0,22)+'…':k[0]),
+      datasets:[{data:top12.map(k=>k[1]),backgroundColor:f.color+'BB',borderColor:f.color,borderWidth:1.5,borderRadius:4}]
+    },
+    options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{ticks:{callback:v=>fmtVol(v)}}},responsive:true,maintainAspectRatio:false}
+  });
+  const intentColors={tool:'#3B82F6',howto:'#10B981',brand:'#8B5CF6',commercial:'#F59E0B',informational:'#9CA3AF'};
+  const byIntent={};
+  f.kws.forEach(k=>{if(!byIntent[k[4]])byIntent[k[4]]=[];byIntent[k[4]].push({x:k[2],y:k[1],kw:k[0]});});
+  new Chart(document.getElementById(`chart-${f.id}-scatter`),{
+    type:'scatter',
+    data:{datasets:Object.entries(byIntent).map(([intent,pts])=>({
+      label:intent,data:pts,
+      backgroundColor:(intentColors[intent]||'#999')+'99',
+      borderColor:intentColors[intent]||'#999',
+      borderWidth:1.5,pointRadius:5,pointHoverRadius:7
+    }))},
+    options:{
+      plugins:{
+        legend:{display:true,position:'bottom',labels:{boxWidth:10,font:{size:11}}},
+        tooltip:{callbacks:{label:(ctx)=>`${ctx.raw.kw}: 量${fmtVol(ctx.raw.y)}, KD${ctx.raw.x}`}}
+      },
+      scales:{
+        x:{title:{display:true,text:'KD难度'},min:0,max:100},
+        y:{title:{display:true,text:'月搜索量'},ticks:{callback:v=>fmtVol(v)}}
+      },
+      responsive:true,maintainAspectRatio:false
+    }
+  });
+}
+
+const sortState={};
+function sortTable(tableId,col){
+  const tbl=document.getElementById(tableId);
+  if(!tbl) return;
+  const key=tableId+'_'+col;
+  sortState[key]=(sortState[key]===1)?-1:1;
+  const dir=sortState[key];
+  const tbody=tbl.querySelector('tbody');
+  const rows=Array.from(tbody.querySelectorAll('tr'));
+  const attrs=['data-kw','data-vol','data-kd','data-cpc','data-intent','data-score'];
+  rows.sort((a,b)=>{
+    const av=a.getAttribute(attrs[col])||'',bv=b.getAttribute(attrs[col])||'';
+    const an=parseFloat(av),bn=parseFloat(bv);
+    if(!isNaN(an)&&!isNaN(bn)) return (an-bn)*dir;
+    return av.localeCompare(bv)*dir;
+  });
+  rows.forEach(r=>tbody.appendChild(r));
+  tbl.querySelectorAll('th').forEach((th,i)=>{
+    th.classList.toggle('sorted',i===col);
+    const icon=th.querySelector('.sort-icon');
+    if(icon) icon.textContent=i===col?(dir===1?'↓':'↑'):'↕';
+  });
+}
+
+function copyKeywords(fid){
+  const f=FEATURES.find(x=>x.id===fid);
+  if(!f) return;
+  navigator.clipboard.writeText(f.kws.map(k=>k[0]).join('\n')).then(()=>{
+    const btn=document.querySelector(`#section-${fid} .btn-copy`);
+    const orig=btn.textContent;
+    btn.textContent='✅ 已复制！';
+    setTimeout(()=>btn.textContent=orig,2000);
+  });
+}
+
+const VALID_IDS=['overview','f1','f2','f3','f4','f5','f6','f7','f8'];
+
+function showSection(id,tabEl){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  const sec=document.getElementById('section-'+id);
+  if(sec) sec.classList.add('active');
+  let activeTab=tabEl;
+  if(tabEl){tabEl.classList.add('active');}
+  else{
+    const tabs=document.querySelectorAll('.nav-tab');
+    const idx=VALID_IDS.indexOf(id);
+    if(idx>=0&&tabs[idx]){tabs[idx].classList.add('active');activeTab=tabs[idx];}
+  }
+  if(activeTab){
+    const navTabs=document.querySelector('.nav-tabs');
+    navTabs.scrollTo({left:activeTab.offsetLeft-navTabs.clientWidth/2+activeTab.offsetWidth/2,behavior:'smooth'});
+  }
+  if(location.hash!=='#'+id) location.hash=id;
+  document.querySelector('.nav-back').style.display=id==='overview'?'none':'flex';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+window.addEventListener('hashchange',()=>{
+  const id=location.hash.slice(1)||'overview';
+  if(VALID_IDS.includes(id)) showSection(id,null);
+});
+
+buildFeatureSections();
+buildOverview();
+const initId=location.hash.slice(1);
+if(initId&&VALID_IDS.includes(initId)) showSection(initId,null);
+else document.querySelector('.nav-back').style.display='none';
+</script>
+</body>
+</html>
